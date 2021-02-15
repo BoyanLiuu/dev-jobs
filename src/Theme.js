@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         box-sizing: border-box;
         font-size: 62.5%;
-        --violet-color:hsl(27,22%,51%);
+        --violet-color:hsl(235,69%,61%);
         --light-violet-color:hsl(235,82%,77%);
         --card-content-color:hsl(214,17%,51%);
     }
