@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 var firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -10,8 +10,8 @@ var firebaseConfig = {
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_MESSAGE_SENDER_ID,
     appId: process.env.REACT_APP_APPID,
-    measurementId: process.env.REACT_APP_MEASUREMENT_ID
-  };
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+};
 
 firebase.initializeApp(firebaseConfig);
 
