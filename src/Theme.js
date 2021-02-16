@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         font-size: 62.5%;
         --violet-color:hsl(235,69%,61%);
+        --very-light-violet-color: rgba(89, 100, 224, 0.1);
         --light-violet-color:hsl(235,82%,77%);
         --card-content-color:hsl(214,17%,51%);
     }
@@ -29,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         width:100%;
+        min-width: 28rem;
         background-color: ${(props) => props.theme.bgColor};
         font-family: 'Kumbh Sans', sans-serif;
     }
