@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 // import { Link } from 'react-router-dom';
 import logo from './../assets/images/desktop/logo.svg';
+import bgMobilePattern from './../assets/images/mobile/bg-pattern-header.svg';
+import bgTabletPattern from './../assets/images/tablet/bg-pattern-header.svg';
+import bgDesktopPattern from './../assets/images/desktop/bg-pattern-header.svg';
 import sunLogo from './../assets/images/desktop/icon-sun.svg';
 import moonLogo from './../assets/images/desktop/icon-moon.svg';
 import React from 'react';
 const HeaderDiv = styled.header`
     width: 100%;
     height: 13.6rem;
-    background-color: var(--violet-color);
+    background: url(${bgMobilePattern});
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     display: flex;
     align-items: center;
+    transition: all ease-in-out 0.1s;
+
     nav {
         width: 100%;
         height: 3.2rem;
@@ -62,6 +69,19 @@ const HeaderDiv = styled.header`
                 }
             }
         }
+    }
+
+    @media (min-width: 768px) {
+        height: 16rem;
+        background: url(${bgTabletPattern});
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    @media (min-width: 1440px) {
+        height: 16.2rem;
+        background: url(${bgDesktopPattern});
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
     }
 `;
 

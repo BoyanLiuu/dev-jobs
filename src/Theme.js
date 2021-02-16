@@ -3,19 +3,24 @@ import { createGlobalStyle } from 'styled-components';
 export const lightTheme = {
     bgColor: 'hsl(210, 22%, 96%)',
     cardColor: 'hsl(0, 0%, 100%)',
-    uncheckedColor: 'hsl(210, 22%, 96%)',
+    uncheckedColor: 'hsla(219, 29%, 14%,0.1)',
+    fullTimeColor: 'hsl(219, 29%, 14%)',
     cardTitleColor: 'hsl(220, 29%, 10%)',
 };
 export const darkTheme = {
     bgColor: 'hsl(220, 29%, 10%)',
     cardColor: 'hsl(219, 29%, 14%)',
-    uncheckedColor: 'hsl(212, 23%, 69%)',
+    uncheckedColor: 'hsla(0, 0%, 100%,0.1)',
+    fullTimeColor: 'hsl(0, 0%, 100%)',
     cardTitleColor: 'white',
 };
 export const GlobalStyle = createGlobalStyle`
     :root {
         box-sizing: border-box;
         font-size: 62.5%;
+        --very-dark-blue-color:hsl(219, 29%, 14%);
+        --dark-grey-color:hsl(214, 17%, 51%);
+        --dark-grey-opacity-color:hsla(214, 17%, 51%,0.2);
         --violet-color:hsl(235,69%,61%);
         --light-violet-color:hsl(235,82%,77%);
         --card-content-color:hsl(214,17%,51%);
