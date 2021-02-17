@@ -11,6 +11,7 @@ const StyledJobTitleDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: all ease-in-out 0.1s;
 
     .company-logo-wrapper {
         height: 5rem;
@@ -30,6 +31,7 @@ const StyledJobTitleDiv = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        
 
         .company-text-wrapper {
             display: flex;
@@ -72,7 +74,7 @@ const StyledJobTitleDiv = styled.div`
 
     @media only screen and (min-width: 37.5rem) {
         flex-direction: row;
-        height: 13rem;
+        height: 14rem;
         overflow: hidden;
 
         .company-logo-wrapper {
@@ -92,7 +94,6 @@ const StyledJobTitleDiv = styled.div`
                 align-items: flex-start;
                 width: calc(100% - 15rem);
                 padding: 0 1rem 0 0;
-                /* background-color: pink;   */
                 justify-content: space-between;  
                 overflow: hidden;
                 .company-url {
@@ -100,12 +101,12 @@ const StyledJobTitleDiv = styled.div`
                 }
             }
         }
-
     }
 
 `;
 
 const JobTitle = ({ Data }) => {
+
     return (
         <StyledJobTitleDiv>
             <div className="company-logo-wrapper">
@@ -118,7 +119,7 @@ const JobTitle = ({ Data }) => {
                     <p className="company-url"> {Data.company_url.replace('http://www.', '').replace('https://www.','')} </p>
                 </div>
                 
-                <a className="company-link" href={Data.company_url} target="_blank" aria-label="link to company website">
+                <a className="company-link" href={Data.company_url} target="_blank" rel="noreferrer" aria-label="link to company website">
                     <button className="company-btn"> Company Site </button>
                 </a>
             </div>

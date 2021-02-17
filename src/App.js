@@ -21,7 +21,6 @@ function App() {
                         <Route path="/" exact component={Home} />
                         <Route path="/job" exact component={Job} />
                     </Switch>
-                    <Job/>
                 </main>
                 <Footer />
             </ThemeProvider>
