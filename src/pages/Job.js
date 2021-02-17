@@ -1,17 +1,20 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from 'styled-components';
-import { CompanyCard } from '../components/index';
+import { CompanyCard, JobDesc } from '../components/index';
 
 const JobDiv = styled.div`
     /* height: 10vh; */
     margin: -1.5rem 5%;
-    /* background-color: burlywood; */
+    transition: all ease-in-out 0.1s;
 
-    @media only screen and (min-width: 80rem) {
-        margin: -5rem 20%;
+    @media only screen and (min-width: 48rem) {
+        margin: -4rem 5%;
+    }
+
+    @media only screen and (min-width: 62.5rem) {
+        margin: -4rem 20%;
     }
 `;
-
 
 function Job() {
     const dummyData = {
@@ -28,15 +31,26 @@ function Job() {
         "company_logo": "https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb3FXIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--cd6884e81ca6cf0597d6b19e230846ad2ae4408b/PB_logo_berry.png"
         };
 
-    const titleData = {
+    const companyData = {
         "company": dummyData.company,
         "company_url": dummyData.company_url,
         "company_logo": dummyData.company_logo
-    }
+    };
+
+    const jobDescData = {
+        "title": dummyData.title,
+        "type": dummyData.type,
+        "url": dummyData.url,
+        "created_at": dummyData.created_at,
+        "location": dummyData.location,
+        "description": dummyData.description,
+        "how_to_apply": dummyData.how_to_apply
+    };
+
     return (
         <JobDiv>
-            <CompanyCard Data={titleData} />
-            
+            <CompanyCard Data={companyData} />
+            <JobDesc Data={jobDescData} />
         </JobDiv>
     );
 }
