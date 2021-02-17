@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from 'styled-components';
-import React from 'react';
+import React, { useState } from 'react';
 import searchIcon from './../../assets/images/desktop/icon-search.svg';
 import filterIcon from './../../assets/images/mobile/icon-filter.svg';
 import locationIcon from './../../assets/images/desktop/icon-location.svg';
+import checkerIcon from './../../assets/images/desktop/icon-check.svg';
 const StyledDesignBannerContainer = styled.div`
     margin: -4rem 2.4rem 0 2.4rem;
     height: 8rem;
@@ -14,7 +15,12 @@ const StyledDesignBannerContainer = styled.div`
     justify-content: space-between;
     padding: 0 2.4rem;
     margin-bottom: 3.2rem;
-
+    max-width: 144rem;
+    .location-container--tablet,
+    .fullTime-container--tablet,
+    .search-btn--tablet {
+        display: none;
+    }
     input {
         border: none;
         outline: none;
@@ -50,74 +56,179 @@ const StyledDesignBannerContainer = styled.div`
             cursor: pointer;
         }
     }
+    .modal {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        visibility: hidden;
+        background-color: rgba(0, 0, 0, 0.5);
 
+        transform: scale(1.1);
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s,
+            transform 0.25s;
+    }
     .searchBar--modal {
-        position: absolute;
-        bottom: -30rem;
-
         width: 32.7rem;
         height: 21.7rem;
-
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         border-radius: 0.6rem;
         background-color: white;
-        .location-container,
-        .fullTime-container {
-            padding: 2.4rem 0 2.4rem 2.4rem;
-        }
-        .location-container {
-            border-bottom: 1px solid var(--dark-grey-opacity-color);
-            .location-icon {
-                margin-right: 1.6rem;
-            }
-        }
-        input[type='checkbox'] {
-            appearance: none;
-            width: 2.4rem;
-            height: 2.4rem;
-            background-color: ${(props) => props.theme.uncheckedColor};
-        }
         .fullTime-container {
             display: flex;
         }
-        .fullTime {
-            margin-left: 1.5rem;
-            align-self: flex-end;
-            height: 2.1rem;
-            color: ${(props) => props.theme.fullTimeColor};
-            font-size: 1.6rem;
-            line-height: 2.1rem;
+    }
+
+    .location-container,
+    .fullTime-container {
+        padding: 2.4rem 0 2.4rem 2.4rem;
+    }
+    .location-container {
+        border-bottom: 1px solid var(--dark-grey-opacity-color);
+        .location-icon {
+            margin-right: 1.6rem;
         }
-        .search-btn {
-            margin-left: 2.4rem;
-            width: 27.9rem;
-            height: 4.8rem;
-            cursor: pointer;
-            border-radius: 0.5rem;
-            border: none;
-            outline: none;
-            color: white;
-            font-size: 1.6rem;
-            line-height: 2.1rem;
-            font-family: 'Kumbh Sans', sans-serif;
-            background-color: var(--violet-color);
+    }
+    input[type='checkbox'] {
+        appearance: none;
+        width: 2.4rem;
+        height: 2.4rem;
+        background-color: ${(props) => props.theme.uncheckedColor};
+        border-radius: 0.3rem;
+        &:checked {
+            background: url(${checkerIcon}) var(--violet-color);
+            background-repeat: no-repeat;
+            background-position: 50%;
+        }
+        &:hover {
+            background-color: var(--light-violet-color);
+            opacity: 0.25;
+        }
+    }
+
+    .fullTime {
+        margin-left: 1.5rem;
+        align-self: flex-end;
+        height: 2.1rem;
+        color: ${(props) => props.theme.fullTimeColor};
+        font-size: 1.6rem;
+        line-height: 2.1rem;
+    }
+    .search-btn {
+        margin-left: 2.4rem;
+        width: 27.9rem;
+        height: 4.8rem;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        border: none;
+        outline: none;
+        color: white;
+        font-size: 1.6rem;
+        line-height: 2.1rem;
+        font-family: 'Kumbh Sans', sans-serif;
+        background-color: var(--violet-color);
+
+        &:hover {
+            background-color: var(--light-violet-color);
+        }
+    }
+
+    .show-modal {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    }
+
+    @media (min-width: 768px) {
+        .searchBar--mobile {
+            display: none;
+        }
+        .location-container--tablet {
+            display: flex;
+            width: 15.67%;
+        }
+
+        .fullTime-container--tablet {
+            display: flex;
+        }
+
+        .search-btn--tablet {
+            display: block;
+            width: 11.6%;
         }
     }
 `;
 
 const SearchBar = () => {
     const handleFilter = () => {};
+    const [show, setShow] = useState(false);
+    const [filterField, setFilterField] = useState({
+        location: '',
+        fullTime: false,
+        title: '',
+    });
+    const modelClasses = show ? 'modal show-modal' : 'modal';
     return (
         <StyledDesignBannerContainer className="searchBar">
             <input
                 placeholder="Filter by title, expertise..."
                 aria-label="Enter company, title, or expertise here"
-                value=""
+                value={filterField.title}
+                onChange={(e) => {
+                    setFilterField({
+                        ...filterField,
+                        title: e.target.value,
+                    });
+                }}
             />
+            <div className="location-container location-container--tablet">
+                <img
+                    src={locationIcon}
+                    alt="location-icon"
+                    className="location-icon"
+                />
+                <input
+                    placeholder="Filter by location..."
+                    aria-label="Enter location"
+                    value={filterField.location}
+                    onChange={(e) => {
+                        setFilterField({
+                            ...filterField,
+                            location: e.target.value,
+                        });
+                    }}
+                />
+            </div>
+            <div className="fullTime-container fullTime-container--tablet">
+                <input
+                    type="checkbox"
+                    id="fullTime"
+                    name="fullTime"
+                    onClick={(e) => {
+                        setFilterField({
+                            ...filterField,
+                            fullTime: e.target.checked,
+                        });
+                    }}
+                />
+                <label className="fullTime">Full Time</label>
+            </div>
+            <button type="submit" className="search-btn search-btn--tablet">
+                Search
+            </button>
             <div className="searchBar--mobile">
                 <img
                     src={filterIcon}
                     alt="filter-icon"
                     className="filter-icon"
+                    onClick={() => setShow(true)}
                 />
                 <div className="search-icon-wrapper">
                     <img
@@ -127,30 +238,47 @@ const SearchBar = () => {
                     />
                 </div>
             </div>
+            <div className={modelClasses} onClick={() => setShow(false)}>
+                <div
+                    className="searchBar--modal"
+                    onClick={(e) => e.stopPropagation()}>
+                    <div className="location-container">
+                        <img
+                            src={locationIcon}
+                            alt="location-icon"
+                            className="location-icon"
+                        />
+                        <input
+                            placeholder="Filter by location..."
+                            aria-label="Enter location"
+                            value={filterField.location}
+                            onChange={(e) => {
+                                setFilterField({
+                                    ...filterField,
+                                    location: e.target.value,
+                                });
+                            }}
+                        />
+                    </div>
 
-            <div className="searchBar--modal">
-                <div className="location-container">
-                    <img
-                        src={locationIcon}
-                        alt="location-icon"
-                        className="location-icon"
-                    />
-                    <input
-                        placeholder="Filter by location..."
-                        aria-label="Enter location"
-                        value=""
-                    />
+                    <div className="fullTime-container">
+                        <input
+                            type="checkbox"
+                            id="fullTime"
+                            name="fullTime"
+                            onClick={(e) => {
+                                setFilterField({
+                                    ...filterField,
+                                    fullTime: e.target.checked,
+                                });
+                            }}
+                        />
+                        <label className="fullTime">Full Time Only</label>
+                    </div>
+                    <button type="submit" className="search-btn">
+                        Search
+                    </button>
                 </div>
-
-                <div className="fullTime-container">
-                    <input type="checkbox" id="fullTime" name="fullTime" />
-                    <label for="fullTime" className="fullTime">
-                        Full Time Only
-                    </label>
-                </div>
-                <button type="submit" className="search-btn">
-                    Search
-                </button>
             </div>
         </StyledDesignBannerContainer>
     );

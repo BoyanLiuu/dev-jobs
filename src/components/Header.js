@@ -63,6 +63,9 @@ const HeaderDiv = styled.header`
                     left: 0.5rem;
                     transform: translateY(-50%);
                 }
+                &:hover::before {
+                    background-color: var(--light-violet-color);
+                }
 
                 &:checked::before {
                     left: 3rem;
