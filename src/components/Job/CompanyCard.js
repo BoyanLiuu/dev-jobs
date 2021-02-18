@@ -19,6 +19,7 @@ const StyledJobTitleDiv = styled.div`
         margin: -2.5rem 0 0 0;
         background-color: pink;
         border-radius: 1.5rem;
+        padding: 1rem;
 
         .logo {
             height: 100%;
@@ -64,6 +65,22 @@ const StyledJobTitleDiv = styled.div`
             padding: 1.5rem 2rem;
             font-weight: 700;
             font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--violet-color);
+            background-color: var(--very-light-violet-color);
+
+        }
+        .company-btn:hover {
+            background-color: var(--half-light-violet-color);
+        }
+
+        .company-btn {
+            outline: none;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 1.5rem 2rem;
+            font-weight: 700;
+            font-size: 1.6rem;
 
             color: var(--violet-color);
             background-color: var(--very-light-violet-color);
@@ -82,6 +99,7 @@ const StyledJobTitleDiv = styled.div`
             width: auto;
             margin: 0;
             border-radius: 0;
+            padding: 3rem;
         }
 
         .company-info-wrapper {
