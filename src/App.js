@@ -6,16 +6,21 @@ import { Header, Footer } from './components/index';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { useState } from 'react';
 function App() {
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState(true);
     const themeToggler = () => {
-        theme === 'light' ? setTheme('dark') : setTheme('light');
+        setTheme(!theme);
+        const bgWave = document.querySelector('.wave');
+        //TODO
+        bgWave.classList.toggle('active');
+        console.log(bgWave);
     };
 
     return (
         <Router>
-            <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+            <ThemeProvider theme={theme ? lightTheme : darkTheme}>
                 <GlobalStyle />
-                <Header />
+                <Header themeToggler={themeToggler} />
+                <span className="wave"></span>
                 <main>
                     <Switch>
                         <Route path="/" exact component={Home} />

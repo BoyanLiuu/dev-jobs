@@ -32,8 +32,9 @@ const StyledDesignBannerContainer = styled.div`
         border: none;
         outline: none;
         height: 2.1rem;
+        background-color: ${(props) => props.theme.cardColor};
         &::placeholder {
-            color: var(--very-dark-blue-color);
+            color: ${(props) => props.theme.fullTimeColor};
             opacity: 0.5;
             font-size: 1.6rem;
             line-height: 2.1rem;

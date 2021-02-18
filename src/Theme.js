@@ -39,8 +39,24 @@ export const GlobalStyle = createGlobalStyle`
     body {
         width:100%;
         min-width: 28rem;
-        background-color: ${(props) => props.theme.bgColor};
+       
         font-family: 'Kumbh Sans', sans-serif;
+    }
+    .wave {
+        position: absolute;
+        top: 35px;
+        right: 40px;
+        border-radius: 100%;
+        width: 2px;
+        height: 2px;
+        display: block;
+        z-index: -1;
+        box-shadow: 0 0 0 0 ${(props) => props.theme.bgColor};
+        transition: box-shadow .3s ease;
+    }
+
+    .wave.active {
+        box-shadow: 0 0 0 9999px ${(props) => props.theme.bgColor};
     }
 
     /* width */

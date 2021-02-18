@@ -90,9 +90,7 @@ const HeaderDiv = styled.header`
     }
 `;
 
-const Header = () => {
-    const handleClick =()=>{
-    }
+const Header = ({ themeToggler }) => {
     return (
         <HeaderDiv>
             <nav>
@@ -104,7 +102,7 @@ const Header = () => {
                         type="checkbox"
                         className="dark-mode-checkbox"
                         id="checkbox"
-                        onClick={handleClick}
+                        onClick={themeToggler}
                     />
                     <img src={moonLogo} alt="moon" className="dark-mode-logo" />
                 </div>
