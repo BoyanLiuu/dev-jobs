@@ -23,8 +23,11 @@ export const GlobalStyle = createGlobalStyle`
         --dark-grey-opacity-color: hsla(214, 17%, 51%,0.2);
         --violet-color: hsl(235,69%,61%);
         --very-light-violet-color: rgba(89, 100, 224, 0.1);
+        --half-light-violet-color: rgba(89, 100, 224, 0.4);
         --light-violet-color: hsl(235,82%,77%);
         --card-content-color: hsl(214,17%,51%);
+        --scroll-bar-color: rgba(65, 65, 170, 0.3);
+        --hovered-scroll-bar-color: rgba(65, 65, 170, 0.7);
     }
     *,
     ::before,
@@ -38,5 +41,26 @@ export const GlobalStyle = createGlobalStyle`
         min-width: 28rem;
         background-color: ${(props) => props.theme.bgColor};
         font-family: 'Kumbh Sans', sans-serif;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 1rem;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: var(--dark-grey-opacity-color);
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: var(--scroll-bar-color);
+        border-radius: 2rem;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--hovered-scroll-bar-color);
     }
 `;
