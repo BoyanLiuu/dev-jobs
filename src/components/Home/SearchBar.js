@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from 'styled-components';
 import React, { useState } from 'react';
-import searchIcon from './../../assets/images/desktop/icon-search.svg';
+import { ReactComponent as SearchIcon } from './../../assets/images/desktop/icon-search.svg';
 import filterIcon from './../../assets/images/mobile/icon-filter.svg';
 import locationIcon from './../../assets/images/desktop/icon-location.svg';
 import checkerIcon from './../../assets/images/desktop/icon-check.svg';
@@ -15,7 +15,14 @@ const StyledDesignBannerContainer = styled.div`
     justify-content: space-between;
     padding: 0 2.4rem;
     margin-bottom: 3.2rem;
-    max-width: 144rem;
+    width: 87.2%;
+    max-width: 110rem;
+
+    .title-container {
+        .search-icon {
+            display: none;
+        }
+    }
     .location-container--tablet,
     .fullTime-container--tablet,
     .search-btn--tablet {
@@ -51,8 +58,6 @@ const StyledDesignBannerContainer = styled.div`
             cursor: pointer;
         }
         .search-icon {
-            width: 2rem;
-            height: 2rem;
             cursor: pointer;
         }
     }
@@ -152,7 +157,9 @@ const StyledDesignBannerContainer = styled.div`
         }
         .location-container--tablet {
             display: flex;
-            width: 15.67%;
+            width: 31.05%;
+            border-bottom: none;
+            border-right: 1px solid var(--dark-grey-opacity-color);
         }
 
         .fullTime-container--tablet {
@@ -162,6 +169,36 @@ const StyledDesignBannerContainer = styled.div`
         .search-btn--tablet {
             display: block;
             width: 11.6%;
+        }
+        .title-container {
+            width: 32.2%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+
+            border-right: 1px solid var(--dark-grey-opacity-color);
+            input {
+                margin-left: 1.6rem;
+                width: 45%;
+            }
+            .search-icon {
+                display: inline-block;
+                & path {
+                    fill: var(--violet-color);
+                }
+            }
+        }
+    }
+
+    @media (min-width: 1440px) {
+        .title-container {
+            width: 46.3rem;
+            input {
+                width: 25.5rem;
+            }
+        }
+        .location-container--tablet {
+            width: 30rem;
         }
     }
 `;
@@ -176,18 +213,21 @@ const SearchBar = () => {
     });
     const modelClasses = show ? 'modal show-modal' : 'modal';
     return (
-        <StyledDesignBannerContainer className="searchBar">
-            <input
-                placeholder="Filter by title, expertise..."
-                aria-label="Enter company, title, or expertise here"
-                value={filterField.title}
-                onChange={(e) => {
-                    setFilterField({
-                        ...filterField,
-                        title: e.target.value,
-                    });
-                }}
-            />
+        <StyledDesignBannerContainer>
+            <div className="title-container">
+                <SearchIcon className="search-icon" />
+                <input
+                    placeholder="Filter by title, company, expertise..."
+                    aria-label="Enter company, title, or expertise here"
+                    value={filterField.title}
+                    onChange={(e) => {
+                        setFilterField({
+                            ...filterField,
+                            title: e.target.value,
+                        });
+                    }}
+                />
+            </div>
             <div className="location-container location-container--tablet">
                 <img
                     src={locationIcon}
@@ -231,11 +271,7 @@ const SearchBar = () => {
                     onClick={() => setShow(true)}
                 />
                 <div className="search-icon-wrapper">
-                    <img
-                        src={searchIcon}
-                        alt="search-icon"
-                        className="search-icon"
-                    />
+                    <SearchIcon className="search-icon" />
                 </div>
             </div>
             <div className={modelClasses} onClick={() => setShow(false)}>

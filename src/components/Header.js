@@ -14,11 +14,13 @@ const HeaderDiv = styled.header`
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
     transition: all ease-in-out 0.1s;
 
     nav {
         width: 100%;
+        max-width: 110rem;
         height: 3.2rem;
         padding: 0 3.2rem;
         display: flex;
@@ -89,6 +91,8 @@ const HeaderDiv = styled.header`
 `;
 
 const Header = () => {
+    const handleClick =()=>{
+    }
     return (
         <HeaderDiv>
             <nav>
@@ -100,6 +104,7 @@ const Header = () => {
                         type="checkbox"
                         className="dark-mode-checkbox"
                         id="checkbox"
+                        onClick={handleClick}
                     />
                     <img src={moonLogo} alt="moon" className="dark-mode-logo" />
                 </div>
