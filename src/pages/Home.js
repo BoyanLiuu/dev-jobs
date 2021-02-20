@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-
+import { Footer } from '../components/index';
 // import { Link } from 'react-router-dom';
 // import { useEffect } from 'react';
 
@@ -54,6 +54,7 @@ function Home() {
             <SearchBar />
 
             <div className="job-lists">{renderItems()}</div>
+            <Footer page="Home"/>
         </HomeDiv>
     );
 }

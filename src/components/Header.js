@@ -10,7 +10,7 @@ import React from 'react';
 const HeaderDiv = styled.header`
     width: 100%;
     height: 13.6rem;
-    background: url(${bgMobilePattern});
+    background: url(${bgMobilePattern}), ${props => props.theme.bgColor};
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: flex;
@@ -78,13 +78,13 @@ const HeaderDiv = styled.header`
 
     @media (min-width: 768px) {
         height: 16rem;
-        background: url(${bgTabletPattern});
+        background: url(${bgTabletPattern}), ${props => props.theme.bgColor};
         background-repeat: no-repeat;
         background-size: 100% 100%;
     }
     @media (min-width: 1440px) {
         height: 16.2rem;
-        background: url(${bgDesktopPattern});
+        background: url(${bgDesktopPattern}),  ${props => props.theme.bgColor};
         background-repeat: no-repeat;
         background-size: 100% 100%;
     }

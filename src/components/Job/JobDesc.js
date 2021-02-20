@@ -6,7 +6,7 @@ import desktopFooterImg from '../../assets/images/desktop/bg-pattern-detail-foot
 const MainDescWrapper = styled.div`
     .job-apply {
         position: relative;
-        margin: 2rem 0 0 0;
+        margin: 2rem 0 3rem;
         border-radius: 0.6rem;
         width: 100%;
         
@@ -19,12 +19,10 @@ const MainDescWrapper = styled.div`
 
         .apply-info-wrapper {
             position: absolute;
-            width: 90%;
-            height: 80%;
-            top: 10%;
-            right: 5%;
+            width: 90%; height: 80%;
+            top: 10%; right: 5%;
 
-            color: ${ props => props.theme.cardColor};
+            color: white;
             font-size: 1.6rem;
             line-height: 2.6rem;
 
@@ -37,17 +35,15 @@ const MainDescWrapper = styled.div`
             .parsed-apply-info {
                 overflow: auto;
                 width: 100%;
-                height: 90%;
+                height: calc(100% - 5rem);
                 
                 p {
                     width: 100%;
                     padding: 0 0 1rem 0;
-                    // todo rm
-                    word-wrap: break-word;
                 }
 
                 a {
-                    color: ${ props => props.theme.cardColor};
+                    color: white;
                     word-wrap: break-word;
                     font-weight: 700;
                 }
@@ -109,7 +105,7 @@ const MainDescWrapper = styled.div`
     }
 
 
-    @media only screen and (min-width: 37.5rem){
+    @media only screen and (min-width: 31.25rem) {
         .job-apply {
             .mobile-footer-img {
                 display: none;
@@ -118,7 +114,16 @@ const MainDescWrapper = styled.div`
                 display: initial;
                 width: 100%;
             }
+
+            .apply-info-wrapper {
+                width: 90%;
+                height: 75%;
+                top: 20%;
+                right: 5%;
+            }
         }
+
+        
     }
 
 `;

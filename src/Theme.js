@@ -26,8 +26,8 @@ export const GlobalStyle = createGlobalStyle`
         --half-light-violet-color: rgba(89, 100, 224, 0.4);
         --light-violet-color: hsl(235,82%,77%);
         --card-content-color: hsl(214,17%,51%);
-        --scroll-bar-color: rgba(65, 65, 170, 0.3);
-        --hovered-scroll-bar-color: rgba(65, 65, 170, 0.7);
+        --scroll-bar-color: rgba(70, 70, 207, 0.6);
+        --hovered-scroll-bar-color: rgba(70, 70, 207, 1);
     }
     *,
     ::before,
@@ -39,7 +39,8 @@ export const GlobalStyle = createGlobalStyle`
     body {
         width:100%;
         min-width: 28rem;
-       
+        background-color: ${props => props.theme.bgColor};
+        transition: all ease-in-out 0.1s;
         font-family: 'Kumbh Sans', sans-serif;
     }
     .wave {
