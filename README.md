@@ -1,6 +1,6 @@
-# Frontend Mentor - Designo Agency Website Challenge
+# Frontend Mentor - GitHub Jobs API
 
-![Design preview for the Designo Agency Website Challenge coding challenge](./preview.jpg)
+![Design preview for the GitHub Jobs API coding challenge](./preview.jpg)
 
 ## Welcome! 👋
 
@@ -8,44 +8,39 @@ Thanks for purchasing this premium Frontend Mentor coding challenge.
 
 [Frontend Mentor](https://www.frontendmentor.io) challenges allow you to improve your skills in a real-life workflow. These premium challenges are perfect portfolio pieces, so please do feel free to use what you build in your portfolio to show others.
 
-**To do this challenge, you need a solid understanding of HTML and CSS and a basic understanding of JavaScript.**
+**To do this challenge, you need a solid understanding of HTML, CSS, and JavaScript.**
 
 ## The challenge
 
-Your challenge is to build out this multi-page website and get it looking as close to the design as possible.
+Your challenge is to build out this jobs board using the [GitHub Jobs API](https://jobs.github.com/api) data and get it looking as close to the design as possible.
 
 You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
 
 Your users should be able to:
 
-- View the optimal layout for each page depending on their device's screen size
-- See hover states for all interactive elements throughout the site
-- Receive an error message when the contact form is submitted if:
-  - The `Name`, `Email Address` or `Your Message` fields are empty should show "Can't be empty"
-  - The `Email Address` is not formatted correctly should show "Please use a valid email address"
-- **Bonus**: View actual locations on the locations page maps (we recommend [Leaflet JS](https://leafletjs.com/) for this)
+-   View the optimal layout for each page depending on their device's screen size
+-   See hover states for all interactive elements throughout the site
+-   View all jobs currently live on the GitHub Jobs API
+-   Be able to click a job from the index page so that they can read more information and apply for the job
+-   **Bonus**: Have the correct color scheme chosen for them based on their computer preferences. _Hint_: Research `prefers-color-scheme` in CSS.
 
-⚠️ **IMPORTANT** ⚠️: If you choose to do the bonus part of the challenge and use a mapping API, we recommend using [LeafletJS](https://leafletjs.com/). It's free to use and doesn't require an API Key. If you decide to use another API, like Google Maps or Mapbox, be sure to secure your API Key. Here are guides for both Google Maps and Mapbox, be sure to read through them thoroughly:
+⚠️ **IMPORTANT** ⚠️: The GitHub Jobs API will throw a CORS error when you try to pull data from it in your project. To avoid this, you need to use [CORS Anywhere](https://cors-anywhere.herokuapp.com/). This allows you to prefix your request URL with `https://cors-anywhere.herokuapp.com/` and the request will come back as expected. So, if you wanted to request all positions, your request would look something like this:
 
-- [API Key best practices from Google Developers](https://developers.google.com/maps/api-key-best-practices)
-- [How to use Mapbox securely](https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/)
+```javascript
+fetch(
+    'https://cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json'
+)
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+```
 
-Exposing your API Key publicly can lead to other people using it to make requests for their own application if the proper precautions aren't in place. Please be sure you read the guides thoroughly and follow their recommendations.
-
-**We don't take any responsibility if you expose your API Key while completing the challenge and have not secured it.**
+⚠️ **IMPORTANT** ⚠️: The "Full Time Only" param seems to have changed on the GitHub Jobs API. Instead of setting `full_time=true`, it seems like `full_time=on` is what you should set. Although the docs still say `full_time=true`.
 
 Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
 
 ## Where to find everything
 
 Your task is to build out the project to the Sketch design file provided. You can download the design file on the platform. It comes with a `README.md` file as well to help you get set up on Sketch or other popular design tools like Figma and Adobe XD.
-
-⚠️ **IMPORTANT** ⚠️: If you're going to import this design into Figma or Adobe XD to work with, there are a few rendering issues that you should be aware of:
-
-- In Figma, the background circle patterns for the intro element on the Web Design, App Design, and Graphic Design showcase pages overflow the element. This is not what it should actually look like. The circles should be cut off and just shown as a background on the coloured area.
-- In Adobe XD, the illustrations for the people and the locations are darker than they're supposed to be. You'll see how they should look when you view the assets in the `/assets` folder.
-
-These are just a couple of points to be aware of if you're using either of these tools to view the design.
 
 All the required assets for this project are in the `/assets` folder. The assets are already exported for the correct screen size and optimized. Some images can be re-used at multiple screen sizes. So if you don't see an image in a specific folder, it will typically be in another folder for that page.
 

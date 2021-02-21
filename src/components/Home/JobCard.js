@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import React from 'react';
 
-const StyledDesignCardContainer = styled.div`
+export const StyledDesignCardContainer = styled.div`
     width: 32.7rem;
     height: 22.8rem;
     background-color: ${(props) => props.theme.cardColor};
