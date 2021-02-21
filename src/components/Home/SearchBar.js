@@ -35,6 +35,7 @@ const StyledDesignBannerContainer = styled.div`
         background-color: ${(props) => props.theme.cardColor};
         &::placeholder {
             color: ${(props) => props.theme.fullTimeColor};
+            transition: color ease-in-out 0.2s;
             opacity: 0.5;
             font-size: 1.6rem;
             line-height: 2.1rem;
@@ -123,6 +124,7 @@ const StyledDesignBannerContainer = styled.div`
         align-self: flex-end;
         height: 2.1rem;
         color: ${(props) => props.theme.fullTimeColor};
+        transition: color ease-in-out 0.2s;
         font-size: 1.6rem;
         line-height: 2.1rem;
     }

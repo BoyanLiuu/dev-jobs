@@ -9,10 +9,6 @@ function App() {
     const [theme, setTheme] = useState(true);
     const themeToggler = () => {
         setTheme(!theme);
-        const bgWave = document.querySelector('.wave');
-        //TODO
-        bgWave.classList.toggle('active');
-        console.log(bgWave);
     };
 
     return (
@@ -20,7 +16,6 @@ function App() {
             <ThemeProvider theme={theme ? lightTheme : darkTheme}>
                 <GlobalStyle />
                 <Header themeToggler={themeToggler} />
-                <span className="wave"></span>
                 <main>
                     <Switch>
                         <Route path="/" exact component={Home} />

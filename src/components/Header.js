@@ -7,6 +7,7 @@ import bgDesktopPattern from './../assets/images/desktop/bg-pattern-header.svg';
 import sunLogo from './../assets/images/desktop/icon-sun.svg';
 import moonLogo from './../assets/images/desktop/icon-moon.svg';
 import React from 'react';
+
 const HeaderDiv = styled.header`
     width: 100%;
     height: 13.6rem;
@@ -16,7 +17,7 @@ const HeaderDiv = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all ease-in-out 0.1s;
+    transition: background-color ease-in-out 0.3s;
 
     nav {
         width: 100%;

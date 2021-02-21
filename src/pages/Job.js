@@ -5,14 +5,14 @@ import { Footer } from '../components/index';
 
 const JobDiv = styled.div`
     /* height: 10vh; */
-    margin: -1.5rem 5%;
+    margin: -1.5rem 5% 5rem;
 
     @media only screen and (min-width: 48rem) {
-        margin: -4rem 5%;
+        margin: -4rem 5% 5rem;
     }
 
     @media only screen and (min-width: 62.5rem) {
-        margin: -4rem 20%;
+        margin: -4rem 20% 5rem;
     }
 `;
 
@@ -46,10 +46,6 @@ function Job() {
         "description": dummyData.description,
         "how_to_apply": dummyData.how_to_apply // todo, remove
     };
-
-    const applyData = {
-        "how_to_apply": dummyData.how_to_apply
-    }
 
     const footerData = {
         "title": dummyData.title,

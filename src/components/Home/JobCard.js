@@ -44,6 +44,7 @@ const StyledDesignCardContainer = styled.div`
             font-size: 2rem;
             line-height: 2.7rem;
             color: ${(props) => props.theme.cardTitleColor};
+            transition: color ease-in-out 0.2s;
         }
         .card__locations {
             color: var(--violet-color);

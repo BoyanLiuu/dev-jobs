@@ -11,7 +11,7 @@ const StyledJobTitleDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: all ease-in-out 0.1s;
+    transition: background-color ease-in-out 0.2s;
 
     .company-logo-wrapper {
         height: 5rem;
@@ -43,7 +43,8 @@ const StyledJobTitleDiv = styled.div`
                 font-size: 2rem;
                 line-height: 2rem;
                 font-weight: 700;
-                color: ${ props => props.theme.cardTitleColor}
+                color: ${ props => props.theme.cardTitleColor};
+                transition: color ease-in-out 0.2s;
             }
             
             .company-url {
@@ -68,6 +69,7 @@ const StyledJobTitleDiv = styled.div`
             cursor: pointer;
             color: var(--violet-color);
             background-color: var(--very-light-violet-color);
+            transition: background-color ease-in-out 0.2s;
 
         }
         .company-btn:hover {

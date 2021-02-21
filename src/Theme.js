@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
         --very-dark-blue-color: hsl(219, 29%, 14%);
         --dark-grey-color: hsl(214, 17%, 51%);
         --dark-grey-opacity-color: hsla(214, 17%, 51%,0.2);
-        --violet-color: hsl(235,69%,61%);
+        --violet-color: hsl(235, 69%, 61%);
         --very-light-violet-color: rgba(89, 100, 224, 0.1);
         --half-light-violet-color: rgba(89, 100, 224, 0.4);
         --light-violet-color: hsl(235,82%,77%);
@@ -40,24 +40,9 @@ export const GlobalStyle = createGlobalStyle`
         width:100%;
         min-width: 28rem;
         background-color: ${props => props.theme.bgColor};
-        transition: all ease-in-out 0.1s;
         font-family: 'Kumbh Sans', sans-serif;
-    }
-    .wave {
-        position: absolute;
-        top: 35px;
-        right: 40px;
-        border-radius: 100%;
-        width: 2px;
-        height: 2px;
-        display: block;
-        z-index: -1;
-        box-shadow: 0 0 0 0 ${(props) => props.theme.bgColor};
-        transition: box-shadow .3s ease;
-    }
-
-    .wave.active {
-        box-shadow: 0 0 0 9999px ${(props) => props.theme.bgColor};
+        overflow-x: hidden;
+        transition: background-color ease-in-out 0.3s;
     }
 
     /* width */

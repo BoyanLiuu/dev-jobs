@@ -74,6 +74,7 @@ const MainDescWrapper = styled.div`
                         font-weight: 700;
                         font-size: 2.5rem;
                         color: ${ props => props.theme.cardColor};
+                        transition: color ease-in-out 0.2s;
                     }
                 }
 
@@ -89,6 +90,7 @@ const MainDescWrapper = styled.div`
                         padding: 0 1.4rem 0 0;
                         font-weight: 700;
                         color: ${ props => props.theme.cardColor};
+                        transition: color ease-in-out 0.2s;
                     }
                 
                 }
@@ -133,6 +135,7 @@ const JobDescWrapper = styled.div`
     padding: 3rem 2rem 0rem;
     width: 100%;
     background-color: ${props => props.theme.cardColor};
+    transition: background-color ease-in-out 0.2s;
     border-radius: 0.6rem;
 
     .job-mid-sec {
@@ -225,6 +228,7 @@ const JobTopSec = styled.div`
     .job-title {
         font-size: 2rem;
         color: ${ props => props.theme.cardTitleColor};
+        transition: color ease-in-out 0.2s;
         font-weight: 700;
         padding: 1rem 0;
     }
@@ -246,7 +250,9 @@ const JobTopSec = styled.div`
         font-size: 1.6rem;
         font-weight: 700;
         color: ${props => props.theme.cardColor};
+        transition: color ease-in-out 0.2s;
         background-color: var(--violet-color);
+        transition: background-color ease-in-out 0.2s;
     }
 
     .apply-btn:hover {
@@ -261,11 +267,11 @@ const JobTopSec = styled.div`
 
         .top-section-texts {
             width: calc(100% - 14.1rem);
-            transition: all ease-in-out 0.1s;
             
             .job-title {
                 font-size: 2.8rem;
                 color: ${ props => props.theme.cardTitleColor};
+                transition: color ease-in-out 0.2s;
                 font-weight: 700;
                 padding: 1rem 0;
             }
@@ -275,6 +281,7 @@ const JobTopSec = styled.div`
             height: 4.8rem;
             width: 14.1rem;
             margin: 0;
+            
         }
     }
 
@@ -314,7 +321,7 @@ const JobDesc = ({Data}) => {
                 </div>
             </JobDescWrapper>
 
-            <div className="job-apply" id="#apply-now">
+            <div className="job-apply" id="apply-now">
                 <img className="mobile-footer-img" src={mobileFooterImg}/>
                 <img className="desktop-footer-img" src={desktopFooterImg}/>
                 <div className="apply-info-wrapper">
