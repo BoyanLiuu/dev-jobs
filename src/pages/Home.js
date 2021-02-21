@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Footer } from '../components/index';
 // import { Link } from 'react-router-dom';
-// import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import { JobCard, SearchBar } from './../components/index';
+import { JobCard, SearchBar, SkeletonJobCard } from './../components/index';
 import styled from 'styled-components';
 
 const HomeDiv = styled.div`
@@ -35,6 +35,7 @@ const HomeDiv = styled.div`
     }
 `;
 function Home() {
+    const [ready, setReady] = useState(false);
     const tmp = {
         jobType: 'Full Time',
         time: '5h ago',
@@ -49,12 +50,25 @@ function Home() {
         }
         return output;
     };
+    const skeletonItems = Array(9)
+        .fill()
+        .map((item, index) => {
+            return <SkeletonJobCard />;
+        });
+
+    useEffect(() => {
+        setTimeout(() => {
+            setReady(true);
+        }, 2000);
+    }, []);
     return (
         <HomeDiv>
             <SearchBar />
 
-            <div className="job-lists">{renderItems()}</div>
-            <Footer page="Home"/>
+            <div className="job-lists">
+                {ready ? renderItems() : skeletonItems}
+            </div>
+            <Footer page="Home" />
         </HomeDiv>
     );
 }
