@@ -5,3 +5,5 @@ export { default as JobDesc } from './Job/JobDesc';
 export { default as CompanyCard } from './Job/CompanyCard';
 export { default as SearchBar } from './Home/SearchBar';
 export { default as SkeletonJobCard } from './Home/SkeletonJobCard';
+export { default as SkeletonCompanyCard } from './Job/SkeletonCompanyCard';
+export { default as SkeletonJobDesc } from './Job/SkeletonJobDesc';

@@ -61,6 +61,7 @@ function Home() {
             setReady(true);
         }, 2000);
     }, []);
+    
     return (
         <HomeDiv>
             <SearchBar />

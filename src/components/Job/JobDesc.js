@@ -3,7 +3,7 @@ import parse from 'html-react-parser';
 import mobileFooterImg from '../../assets/images/mobile/bg-pattern-detail-footer.svg';
 import desktopFooterImg from '../../assets/images/desktop/bg-pattern-detail-footer.svg';
 
-const MainDescWrapper = styled.div`
+export const MainDescWrapper = styled.div`
     .job-apply {
         position: relative;
         margin: 2rem 0 3rem;
@@ -130,7 +130,7 @@ const MainDescWrapper = styled.div`
 
 `;
 
-const JobDescWrapper = styled.div`
+export const JobDescWrapper = styled.div`
     margin: 2rem 0 0 0;
     padding: 3rem 2rem 0rem;
     width: 100%;
@@ -210,7 +210,7 @@ const JobDescWrapper = styled.div`
 `;
 
 
-const JobTopSec = styled.div`
+export const JobTopSec = styled.div`
     display: flex;
     flex-direction: column;
    

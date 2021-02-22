@@ -2,6 +2,7 @@ import React from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import styled from 'styled-components';
 import { StyledDesignCardContainer } from './JobCard';
+
 const SkeletonDiv = styled(StyledDesignCardContainer)`
     .card__content {
         display: flex;

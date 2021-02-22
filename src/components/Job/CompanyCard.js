@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import React from 'react';
 
 
-const StyledJobTitleDiv = styled.div`
+export const StyledJobTitleDiv = styled.div`
     width: 100%;
     background-color: ${props => props.theme.cardColor};
     border-radius: 0.6rem;
@@ -67,27 +67,15 @@ const StyledJobTitleDiv = styled.div`
             font-weight: 700;
             font-size: 1.6rem;
             cursor: pointer;
-            color: var(--violet-color);
-            background-color: var(--very-light-violet-color);
+            color: ${props => props.theme.companyButtonTextColor};
+            background-color: ${ props => props.theme.companyButtonColor};
             transition: background-color ease-in-out 0.2s;
 
         }
         .company-btn:hover {
-            background-color: var(--half-light-violet-color);
+            background-color: ${ props => props.theme.companyButtonHoverColor};
         }
 
-        .company-btn {
-            outline: none;
-            border: none;
-            border-radius: 0.5rem;
-            padding: 1.5rem 2rem;
-            font-weight: 700;
-            font-size: 1.6rem;
-
-            color: var(--violet-color);
-            background-color: var(--very-light-violet-color);
-
-        }
     }
 
 

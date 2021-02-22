@@ -1,7 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 import { CompanyCard, JobDesc } from '../components/index';
 import { Footer } from '../components/index';
+import SkeletonCompanyCard from '../components/Job/SkeletonCompanyCard';
+import SkeletonJobDesc from '../components/Job/SkeletonJobDesc';
 
 const JobDiv = styled.div`
     /* height: 10vh; */
@@ -17,6 +20,9 @@ const JobDiv = styled.div`
 `;
 
 function Job() {
+
+    const [ready, setReady] = useState(false);
+
     const dummyData = {
         "id": "79da435a-598c-43e6-a012-bfab1c841065",
         "type": "Full Time",
@@ -52,10 +58,17 @@ function Job() {
         "company": dummyData.company
     }
 
+    useEffect(() => {
+        setTimeout(() => {
+            setReady(true);
+        }, 2000);
+    }, []);
+
     return (
         <JobDiv>
-            <CompanyCard Data={companyData} />
-            <JobDesc Data={jobDescData} />
+            { ready ? <CompanyCard Data={companyData}/> : <SkeletonCompanyCard /> }
+            {/* <SkeletonJobDesc /> */}
+            { ready ?  <JobDesc Data={jobDescData} /> : <SkeletonJobDesc /> }
             <Footer page='job' data={footerData}/>
         </JobDiv>
     );

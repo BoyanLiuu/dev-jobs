@@ -6,6 +6,9 @@ export const lightTheme = {
     uncheckedColor: 'hsla(219, 29%, 14%,0.1)',
     fullTimeColor: 'hsl(219, 29%, 14%)',
     cardTitleColor: 'hsl(220, 29%, 10%)',
+    companyButtonColor: 'rgba(89, 100, 224, 0.1)',
+    companyButtonHoverColor: 'rgba(89, 100, 224, 0.4)',
+    companyButtonTextColor: 'hsl(235, 69%, 61%)'
 };
 export const darkTheme = {
     bgColor: 'hsl(220, 29%, 10%)',
@@ -13,6 +16,9 @@ export const darkTheme = {
     uncheckedColor: 'hsla(0, 0%, 100%,0.1)',
     fullTimeColor: 'hsl(0, 0%, 100%)',
     cardTitleColor: 'white',
+    companyButtonColor: 'hsla(214, 17%, 51%, 0.2)',
+    companyButtonHoverColor: 'hsl(214, 17%, 51%, 0.6)',
+    companyButtonTextColor: 'hsl(0, 0%, 100%)'
 };
 export const GlobalStyle = createGlobalStyle`
     :root {
