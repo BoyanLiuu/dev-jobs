@@ -17,8 +17,13 @@ export const StyledDesignCardContainer = styled.div`
         background: pink;
         border-radius: 1.5rem;
         padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         .card__img {
-            width: 100%;
+            width: 4rem;
+            height: 4rem;
+            object-fit: contain;
         }
     }
     .card__content {
@@ -62,12 +67,13 @@ export const StyledDesignCardContainer = styled.div`
     }
 `;
 
-const JobCard = () => {
+const JobCard = ({ data }) => {
+    let { company, company_logo, type, location, created_at, title } = data;
     return (
         <StyledDesignCardContainer>
             <div className="card__img--container">
                 <img
-                    src="https://jobs.github.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBb3FXIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--cd6884e81ca6cf0597d6b19e230846ad2ae4408b/PB_logo_berry.png"
+                    src={company_logo}
                     alt="company logo"
                     className="card__img "
                 />
@@ -76,15 +82,13 @@ const JobCard = () => {
                 <div className="card__top">
                     <span className="card__hour"> 5h ago</span>
                     <div className="card__dot" />
-                    <span className="card__full"> Full Time</span>
+                    <span className="card__full">{type}</span>
                 </div>
 
-                <p className="card__title"> Senior Software Engineer</p>
-                <p className="card__company"> So Digital Inc.</p>
+                <p className="card__title">{title}</p>
+                <p className="card__company">{company}</p>
 
-                <p className="card__locations">
-                    Remote,Seoul, Tokyo, Mountain View, San Fransisco
-                </p>
+                <p className="card__locations">{location}</p>
             </div>
         </StyledDesignCardContainer>
     );

@@ -35,7 +35,25 @@ const HomeDiv = styled.div`
     }
 `;
 function Home() {
+    // skeleton loading
     const [ready, setReady] = useState(false);
+    //store fetched data
+    const [jobs, setJobs] = useState([]);
+    //set page  pagination
+    const [page, setPage] = useState(1);
+    //store filter field
+    const [filter, setFilter] = useState({
+        description: '',
+        location: '',
+        fullTime: false,
+    });
+    //skeleton code
+    const skeletonItems = Array(9)
+        .fill()
+        .map((item, index) => {
+            return <SkeletonJobCard key={index} />;
+        });
+
     const tmp = {
         jobType: 'Full Time',
         time: '5h ago',
@@ -43,30 +61,52 @@ function Home() {
         company: 'So Digital Inc.',
         keyword: 'Remote,Seoul, Tokyo, Mountain View, San Fransisco',
     };
-    const renderItems = () => {
-        let output = [];
-        for (let i = 0; i < 10; i++) {
-            output.push(<JobCard data={tmp} key={i} />);
-        }
-        return output;
-    };
-    const skeletonItems = Array(9)
-        .fill()
-        .map((item, index) => {
-            return <SkeletonJobCard />;
-        });
+    const renderJobItems = jobs.map((item, index) => {
+        return <JobCard data={item} key={index} />;
+    });
 
+    //Use effect
     useEffect(() => {
         setTimeout(() => {
-            setReady(true);
-        }, 2000);
+            // setReady(true);
+        }, 1000);
+        if (sessionStorage.jobs) {
+            // fetch jobs data
+            async function fetchMovies() {
+                const endpoint = `https://api.allorigins.win/get?url=${encodeURIComponent(
+                    `https://jobs.github.com/positions.json?page=${page}&description=${filter.description}&location=${filter.location}&full_time=${filter.fullTime}`
+                )}`;
+                //using await to wait for finishing fetching and store it into an array
+                const result = await fetch(endpoint)
+                    .then((res) => res.json())
+                    .then((data) => JSON.parse(data.contents));
+                console.log(result);
+                setJobs(result);
+            }
+            fetchMovies();
+            console.log('hello ');
+        }
     }, []);
+
+    useEffect(() => {
+        //get data from sessionStorage,so when we close the page it will fetch data again
+        if (sessionStorage.jobs) {
+            setJobs(JSON.parse(sessionStorage.jobs));
+            console.log('fetch from session storage');
+        } else {
+            console.log('fetch from api');
+            console.log(jobs);
+            sessionStorage.setItem('jobs', JSON.stringify(jobs));
+        }
+        setReady(true);
+    }, [filter]);
+
     return (
         <HomeDiv>
             <SearchBar />
 
             <div className="job-lists">
-                {ready ? renderItems() : skeletonItems}
+                {ready ? renderJobItems : skeletonItems}
             </div>
             <Footer page="Home" />
         </HomeDiv>

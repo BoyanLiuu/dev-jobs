@@ -4,12 +4,23 @@ import { GlobalStyle, lightTheme, darkTheme } from './Theme';
 import { ThemeProvider } from 'styled-components';
 import { Header } from './components/index';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 function App() {
-    const [theme, setTheme] = useState(true);
+    //check localstorage and see if we store dark/light
+    const themeFlag = () => {
+        if (localStorage.mode) {
+            return localStorage.mode === 'true';
+        }
+        return true;
+    };
+    const [theme, setTheme] = useState(themeFlag());
     const themeToggler = () => {
         setTheme(!theme);
     };
+    // update localstorage
+    useEffect(() => {
+        localStorage.setItem('mode', theme);
+    }, [theme]);
 
     return (
         <Router>
