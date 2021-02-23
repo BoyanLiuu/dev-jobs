@@ -1,13 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from 'styled-components';
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import location_logo from './../../assets/images/location.svg';
 export const StyledDesignCardContainer = styled.div`
     width: 32.7rem;
     height: 22.8rem;
     background-color: ${(props) => props.theme.cardColor};
     border-radius: 0.6rem;
     position: relative;
+
     .card__img--container {
         top: -2.5rem;
         left: 3.2rem;
@@ -68,7 +70,9 @@ export const StyledDesignCardContainer = styled.div`
 `;
 
 const JobCard = ({ data }) => {
-    let { company, company_logo, type, location, created_at, title } = data;
+    let { company, company_logo, type, location, created_at, title, id } = data;
+    if (company_logo === null || company_logo === '')
+        company_logo = location_logo;
     return (
         <StyledDesignCardContainer>
             <div className="card__img--container">
@@ -85,7 +89,9 @@ const JobCard = ({ data }) => {
                     <span className="card__full">{type}</span>
                 </div>
 
-                <p className="card__title">{title}</p>
+                <Link to={`job/${id}`}>
+                    <p className="card__title">{title}</p>
+                </Link>
                 <p className="card__company">{company}</p>
 
                 <p className="card__locations">{location}</p>

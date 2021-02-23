@@ -7,11 +7,12 @@ import bgDesktopPattern from './../assets/images/desktop/bg-pattern-header.svg';
 import sunLogo from './../assets/images/desktop/icon-sun.svg';
 import moonLogo from './../assets/images/desktop/icon-moon.svg';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeaderDiv = styled.header`
     width: 100%;
     height: 13.6rem;
-    background: url(${bgMobilePattern}), ${props => props.theme.bgColor};
+    background: url(${bgMobilePattern}), ${(props) => props.theme.bgColor};
     background-repeat: no-repeat;
     background-size: 100% 100%;
     display: flex;
@@ -79,13 +80,13 @@ const HeaderDiv = styled.header`
 
     @media (min-width: 768px) {
         height: 16rem;
-        background: url(${bgTabletPattern}), ${props => props.theme.bgColor};
+        background: url(${bgTabletPattern}), ${(props) => props.theme.bgColor};
         background-repeat: no-repeat;
         background-size: 100% 100%;
     }
     @media (min-width: 1440px) {
         height: 16.2rem;
-        background: url(${bgDesktopPattern}),  ${props => props.theme.bgColor};
+        background: url(${bgDesktopPattern}), ${(props) => props.theme.bgColor};
         background-repeat: no-repeat;
         background-size: 100% 100%;
     }
@@ -95,7 +96,9 @@ const Header = ({ themeToggler }) => {
     return (
         <HeaderDiv>
             <nav>
-                <img src={logo} alt="logo" className="logo" />
+                <Link to="/">
+                    <img src={logo} alt="logo" className="logo" />
+                </Link>
                 <div className="dark-mode-container">
                     <img src={sunLogo} alt="sun" className="dark-mode-logo" />
                     <input

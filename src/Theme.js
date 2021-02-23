@@ -8,7 +8,7 @@ export const lightTheme = {
     cardTitleColor: 'hsl(220, 29%, 10%)',
     companyButtonColor: 'rgba(89, 100, 224, 0.1)',
     companyButtonHoverColor: 'rgba(89, 100, 224, 0.4)',
-    companyButtonTextColor: 'hsl(235, 69%, 61%)'
+    companyButtonTextColor: 'hsl(235, 69%, 61%)',
 };
 export const darkTheme = {
     bgColor: 'hsl(220, 29%, 10%)',
@@ -18,7 +18,7 @@ export const darkTheme = {
     cardTitleColor: 'white',
     companyButtonColor: 'hsla(214, 17%, 51%, 0.2)',
     companyButtonHoverColor: 'hsl(214, 17%, 51%, 0.6)',
-    companyButtonTextColor: 'hsl(0, 0%, 100%)'
+    companyButtonTextColor: 'hsl(0, 0%, 100%)',
 };
 export const GlobalStyle = createGlobalStyle`
     :root {
@@ -45,12 +45,14 @@ export const GlobalStyle = createGlobalStyle`
     body {
         width:100%;
         min-width: 28rem;
-        background-color: ${props => props.theme.bgColor};
+        background-color: ${(props) => props.theme.bgColor};
         font-family: 'Kumbh Sans', sans-serif;
         overflow-x: hidden;
         transition: background-color ease-in-out 0.3s;
     }
-
+    a {
+        text-decoration: none;
+    }
     /* width */
     ::-webkit-scrollbar {
         width: 1rem;
