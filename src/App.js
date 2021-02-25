@@ -30,7 +30,7 @@ function App() {
                 <main>
                     <Switch>
                         <Route path="/" exact component={Home} />
-                        <Route path="/job" exact component={Job} />
+                        <Route path="/job/:id" exact component={Job} />
                     </Switch>
                 </main>
             </ThemeProvider>

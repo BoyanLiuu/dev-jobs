@@ -31,6 +31,10 @@ const StyledDesignBannerContainer = styled.div`
         border: none;
         outline: none;
         height: 2.1rem;
+        font-size: 1.6rem;
+        line-height: 2.1rem;
+        font-family: 'Kumbh Sans', sans-serif;
+        color: ${(props) => props.theme.fullTimeColor};
         background-color: ${(props) => props.theme.cardColor};
         &::placeholder {
             color: ${(props) => props.theme.fullTimeColor};
@@ -206,14 +210,24 @@ const StyledDesignBannerContainer = styled.div`
     }
 `;
 
-const SearchBar = () => {
-    const handleFilter = () => {};
+const SearchBar = ({ setFilter }) => {
     const [show, setShow] = useState(false);
     const [filterField, setFilterField] = useState({
+        description: '',
         location: '',
         fullTime: false,
-        title: '',
     });
+
+    const handleSearch = () => {
+        console.log(filterField);
+        setFilter(filterField);
+        //reset
+        setFilterField({
+            description: '',
+            location: '',
+            fullTime: false,
+        });
+    };
     const modelClasses = show ? 'modal show-modal' : 'modal';
     return (
         <StyledDesignBannerContainer>
@@ -222,11 +236,11 @@ const SearchBar = () => {
                 <input
                     placeholder="Filter by title, company, expertise..."
                     aria-label="Enter company, title, or expertise here"
-                    value={filterField.title}
+                    value={filterField.description}
                     onChange={(e) => {
                         setFilterField({
                             ...filterField,
-                            title: e.target.value,
+                            description: e.target.value,
                         });
                     }}
                 />
@@ -241,6 +255,7 @@ const SearchBar = () => {
                     placeholder="Filter by location..."
                     aria-label="Enter location"
                     value={filterField.location}
+                    id="address-input"
                     onChange={(e) => {
                         setFilterField({
                             ...filterField,
@@ -260,7 +275,9 @@ const SearchBar = () => {
                 />
                 <label className="fullTime">Full Time</label>
             </div>
-            <button type="submit" className="search-btn search-btn--tablet">
+            <button
+                onClick={handleSearch}
+                className="search-btn search-btn--tablet">
                 Search
             </button>
             <div className="searchBar--mobile">
@@ -311,7 +328,10 @@ const SearchBar = () => {
                         />
                         <label className="fullTime">Full Time Only</label>
                     </div>
-                    <button type="submit" className="search-btn">
+                    <button
+                        type="submit"
+                        className="search-btn"
+                        onClick={handleSearch}>
                         Search
                     </button>
                 </div>

@@ -54,57 +54,66 @@ function Home() {
             return <SkeletonJobCard key={index} />;
         });
 
-    const tmp = {
-        jobType: 'Full Time',
-        time: '5h ago',
-        title: 'Senior Software Engineer',
-        company: 'So Digital Inc.',
-        keyword: 'Remote,Seoul, Tokyo, Mountain View, San Fransisco',
-    };
     const renderJobItems = jobs.map((item, index) => {
         return <JobCard data={item} key={index} />;
     });
-
+    // fetch jobs data
+    async function fetchMovies() {
+        const endpoint = `https://api.allorigins.win/get?url=${encodeURIComponent(
+            `https://jobs.github.com/positions.json?page=${page}&description=${filter.description}&location=${filter.location}&full_time=${filter.fullTime}`
+        )}`;
+        //using await to wait for finishing fetching and store it into an array
+        const result = await fetch(endpoint)
+            .then((res) => res.json())
+            .then((data) => JSON.parse(data.contents));
+        setJobs(result);
+        // console.log('in the fetch');
+    }
     //Use effect
     useEffect(() => {
-        setTimeout(() => {
-            // setReady(true);
-        }, 1000);
-        if (sessionStorage.jobs) {
-            // fetch jobs data
-            async function fetchMovies() {
-                const endpoint = `https://api.allorigins.win/get?url=${encodeURIComponent(
-                    `https://jobs.github.com/positions.json?page=${page}&description=${filter.description}&location=${filter.location}&full_time=${filter.fullTime}`
-                )}`;
-                //using await to wait for finishing fetching and store it into an array
-                const result = await fetch(endpoint)
-                    .then((res) => res.json())
-                    .then((data) => JSON.parse(data.contents));
-                console.log(result);
-                setJobs(result);
-            }
-            fetchMovies();
-            console.log('hello ');
+        async function waitFunc() {
+            const wait = (timeToDelay) =>
+                new Promise((resolve) => setTimeout(resolve, timeToDelay));
+            await wait(2000);
+            setReady(true);
+            console.log('waiting ');
         }
+        waitFunc();
+        console.log('outside waiting ');
     }, []);
-    
 
     useEffect(() => {
+        // check search filter field
+        let flag = true;
+        if (
+            filter.description !== '' ||
+            filter.location !== '' ||
+            filter.fullTime !== false
+        )
+            flag = false;
+        console.log(`flag is: ${flag}`);
         //get data from sessionStorage,so when we close the page it will fetch data again
-        if (sessionStorage.jobs) {
+        if (flag && sessionStorage.jobs) {
             setJobs(JSON.parse(sessionStorage.jobs));
             console.log('fetch from session storage');
         } else {
+            fetchMovies();
             console.log('fetch from api');
-            console.log(jobs);
-            sessionStorage.setItem('jobs', JSON.stringify(jobs));
+            // console.log(jobs);
         }
-        setReady(true);
-    }, [filter]);
+        // setReady(true);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filter, page]);
+
+    useEffect(() => {
+        console.log('when did i happen?');
+
+        sessionStorage.setItem('jobs', JSON.stringify(jobs));
+    }, [filter, page, jobs]);
 
     return (
         <HomeDiv>
-            <SearchBar />
+            <SearchBar setFilter={setFilter} />
 
             <div className="job-lists">
                 {ready ? renderJobItems : skeletonItems}
