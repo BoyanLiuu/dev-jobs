@@ -209,7 +209,6 @@ export const JobDescWrapper = styled.div`
     }
 `;
 
-
 export const JobTopSec = styled.div`
     display: flex;
     flex-direction: column;
@@ -331,7 +330,6 @@ const JobDesc = ({Data}) => {
                         {parse(Data.how_to_apply)}
                     </div>
                 </div>
-                
             </div>
         </MainDescWrapper>
         

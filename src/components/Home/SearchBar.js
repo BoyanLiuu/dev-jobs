@@ -15,8 +15,7 @@ const StyledDesignBannerContainer = styled.div`
     justify-content: space-between;
     padding: 0 2.4rem;
     margin-bottom: 3.2rem;
-    width: 87.2%;
-    max-width: 110rem;
+    width: 90%;
 
     .title-container {
         .search-icon {
@@ -194,6 +193,7 @@ const StyledDesignBannerContainer = styled.div`
     }
 
     @media (min-width: 1440px) {
+        width: 75%;
         .title-container {
             width: 46.3rem;
             input {
@@ -250,10 +250,7 @@ const SearchBar = () => {
                 />
             </div>
             <div className="fullTime-container fullTime-container--tablet">
-                <input
-                    type="checkbox"
-                    id="fullTime"
-                    name="fullTime"
+                <input type="checkbox" id="fullTime" name="fullTime"
                     onClick={(e) => {
                         setFilterField({
                             ...filterField,

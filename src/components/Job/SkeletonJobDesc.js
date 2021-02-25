@@ -6,16 +6,31 @@ import { MainDescWrapper, JobDescWrapper, JobTopSec} from './JobDesc';
 
 const SkeletonMainDescWrapper = styled(MainDescWrapper)`
     height: fit-content;
+
+    .text {
+        margin: 0 0 1rem 0;
+        display: block;
+    }
+
+    .job-apply {
+        width: 100%;
+        height: 25rem;
+        background-color: var(--violet-color);
+        .narrower-text {
+            margin: 0 0 1rem 5%;
+        }
+
+        .narrower-text-title {
+            margin: 4rem 0 3rem 5%;
+        }
+    }
 `;
 const SkeletonJobDescWrapper = styled(JobDescWrapper)`
     padding: 3rem 2rem 2rem;
 `;
 const SkeletonJobTopSec = styled(JobTopSec)`
 
-    .text {
-        margin: 0 0 1rem 0;
-        display: block;
-    }
+   
 
 `;
 
@@ -37,13 +52,17 @@ const SkeletonJobDesc = () => {
             </SkeletonJobTopSec>
             
             <div className="job-mid-sec">
-            <SkeletonTheme color="#b6c0d1" highlightColor="#cad2e0" height="100%">
-                <Skeleton className="text" width={`100%`} duration={2} count={10} />
-            </SkeletonTheme>
-           
+                <SkeletonTheme color="#b6c0d1" highlightColor="#cad2e0" height="100%">
+                    <Skeleton className="text" width={`100%`} duration={2} count={15} />
+                </SkeletonTheme>
             </div>
         </SkeletonJobDescWrapper>
-        
+        <div className="job-apply" >
+            <SkeletonTheme color="#b6c0d1" highlightColor="#cad2e0" height="100%">
+                <Skeleton className="narrower-text-title" height="2rem" width={`40%`} duration={2} />
+                <Skeleton className="narrower-text" width={`90%`} duration={2} count={5} />
+            </SkeletonTheme>
+        </div>
     </SkeletonMainDescWrapper>
 };
 

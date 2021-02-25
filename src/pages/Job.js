@@ -5,6 +5,7 @@ import { CompanyCard, JobDesc } from '../components/index';
 import { Footer } from '../components/index';
 import SkeletonCompanyCard from '../components/Job/SkeletonCompanyCard';
 import SkeletonJobDesc from '../components/Job/SkeletonJobDesc';
+import SkeletonJobFooter from '../components/SkeletonJobFooter';
 
 const JobDiv = styled.div`
     /* height: 10vh; */
@@ -67,9 +68,8 @@ function Job() {
     return (
         <JobDiv>
             { ready ? <CompanyCard Data={companyData}/> : <SkeletonCompanyCard /> }
-            {/* <SkeletonJobDesc /> */}
             { ready ?  <JobDesc Data={jobDescData} /> : <SkeletonJobDesc /> }
-            <Footer page='job' data={footerData}/>
+            { ready ?  <Footer page='job' data={footerData}/> : <SkeletonJobFooter page='job' data={footerData} />}
         </JobDiv>
     );
 }

@@ -20,11 +20,9 @@ const HeaderDiv = styled.header`
     transition: background-color ease-in-out 0.3s;
 
     nav {
-        width: 100%;
-        max-width: 110rem;
-        height: 3.2rem;
-        padding: 0 3.2rem;
+        width: 90%;
         display: flex;
+        margin-bottom: 3rem;
         justify-content: space-between;
         .dark-mode-container {
             width: 11.2rem;
@@ -82,12 +80,18 @@ const HeaderDiv = styled.header`
         background: url(${bgTabletPattern}), ${props => props.theme.bgColor};
         background-repeat: no-repeat;
         background-size: 100% 100%;
+
     }
     @media (min-width: 1440px) {
+        
         height: 16.2rem;
         background: url(${bgDesktopPattern}),  ${props => props.theme.bgColor};
         background-repeat: no-repeat;
         background-size: 100% 100%;
+
+        nav {
+            width: 75%;   
+        }
     }
 `;
 

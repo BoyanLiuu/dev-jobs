@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 
 // import { Link } from 'react-router-dom';
-const JobFooterContainer = styled.footer`
+export const JobFooterContainer = styled.footer`
    
     .footer {
         width: 100vw;

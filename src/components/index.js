@@ -7,3 +7,4 @@ export { default as SearchBar } from './Home/SearchBar';
 export { default as SkeletonJobCard } from './Home/SkeletonJobCard';
 export { default as SkeletonCompanyCard } from './Job/SkeletonCompanyCard';
 export { default as SkeletonJobDesc } from './Job/SkeletonJobDesc';
+export { default as SkeletonJobFooter} from './SkeletonJobFooter';
