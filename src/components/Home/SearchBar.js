@@ -5,6 +5,7 @@ import { ReactComponent as SearchIcon } from './../../assets/images/desktop/icon
 import filterIcon from './../../assets/images/mobile/icon-filter.svg';
 import locationIcon from './../../assets/images/desktop/icon-location.svg';
 import checkerIcon from './../../assets/images/desktop/icon-check.svg';
+
 const StyledDesignBannerContainer = styled.div`
     margin: -4rem 2.4rem 0 2.4rem;
     height: 8rem;
@@ -18,22 +19,28 @@ const StyledDesignBannerContainer = styled.div`
     width: 90%;
 
     .title-container {
+        width: 100%;
+        padding: 0 2rem 0 0;
         .search-icon {
             display: none;
         }
     }
+
     .location-container--tablet,
     .fullTime-container--tablet,
     .search-btn--tablet {
         display: none;
     }
+
     input {
+        width: 100%;
         border: none;
         outline: none;
         height: 2.1rem;
         font-size: 1.6rem;
         line-height: 2.1rem;
         font-family: 'Kumbh Sans', sans-serif;
+        text-overflow: ellipsis; 
         color: ${(props) => props.theme.fullTimeColor};
         background-color: ${(props) => props.theme.cardColor};
         &::placeholder {
@@ -82,15 +89,16 @@ const StyledDesignBannerContainer = styled.div`
             transform 0.25s;
     }
     .searchBar--modal {
-        width: 32.7rem;
-        height: 21.7rem;
+        width: 90%;
+        padding-bottom: 2rem;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         border-radius: 0.6rem;
-        background-color: white;
-        .fullTime-container {
+        background-color: ${props => props.theme.cardColor};
+        .fullTime-container,
+        .location-container {
             display: flex;
         }
     }
@@ -111,14 +119,15 @@ const StyledDesignBannerContainer = styled.div`
         height: 2.4rem;
         background-color: ${(props) => props.theme.uncheckedColor};
         border-radius: 0.3rem;
+        transition: background-color ease-in 0.05s;
+
         &:checked {
             background: url(${checkerIcon}) var(--violet-color);
             background-repeat: no-repeat;
             background-position: 50%;
         }
         &:hover {
-            background-color: var(--light-violet-color);
-            opacity: 0.25;
+            background-color: var(--half-light-violet-color);
         }
     }
 
@@ -131,9 +140,10 @@ const StyledDesignBannerContainer = styled.div`
         font-size: 1.6rem;
         line-height: 2.1rem;
     }
+
     .search-btn {
-        margin-left: 2.4rem;
-        width: 27.9rem;
+        margin: 1rem 5%;
+        width: 90%;
         height: 4.8rem;
         cursor: pointer;
         border-radius: 0.5rem;
@@ -163,7 +173,7 @@ const StyledDesignBannerContainer = styled.div`
         }
         .location-container--tablet {
             display: flex;
-            width: 31.05%;
+            width: calc((100% - 15rem) * 0.45);
             border-bottom: none;
             border-right: 1px solid var(--dark-grey-opacity-color);
         }
@@ -176,8 +186,9 @@ const StyledDesignBannerContainer = styled.div`
             display: block;
             width: 11.6%;
         }
+
         .title-container {
-            width: 32.2%;
+            width: calc((100% - 15rem) * 0.4);
             height: 100%;
             display: flex;
             align-items: center;
@@ -185,7 +196,7 @@ const StyledDesignBannerContainer = styled.div`
             border-right: 1px solid var(--dark-grey-opacity-color);
             input {
                 margin-left: 1.6rem;
-                width: 45%;
+                width: 100%;
             }
             .search-icon {
                 display: inline-block;
@@ -194,18 +205,32 @@ const StyledDesignBannerContainer = styled.div`
                 }
             }
         }
+
+        .fullTime-container {
+            width: 15rem;
+        }
+
+        .searchBar--modal {
+            display: none;
+        }
+
+        .search-btn {
+            width: 10rem;
+            margin: 0 0 0 2rem;
+        }
+
     }
 
     @media (min-width: 1440px) {
         width: 75%;
         .title-container {
-            width: 46.3rem;
+            width: calc((100% - 15rem) * 0.5);
             input {
-                width: 25.5rem;
+                width: 100%;
             }
         }
         .location-container--tablet {
-            width: 30rem;
+            width: calc((100% - 15rem) * 0.35);
         }
     }
 `;
@@ -280,6 +305,7 @@ const SearchBar = ({ setFilter }) => {
                 className="search-btn search-btn--tablet">
                 Search
             </button>
+    
             <div className="searchBar--mobile">
                 <img
                     src={filterIcon}

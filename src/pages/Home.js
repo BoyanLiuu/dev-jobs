@@ -11,24 +11,25 @@ const HomeDiv = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100vw;
+
     .job-lists {
-        margin-top: 3.2rem;
+        width: 90vw;
+        margin: 3.2rem auto 0;
         display: grid;
         row-gap: 4.9rem;
-        transition: all 0.3s ease;
+        transition: all 0.08s ease;
     }
     @media (min-width: 768px) {
         .job-lists {
-            width: 68.9rem;
-            /* row-gap: 4.9rem; */
             grid-template-columns: 1fr 1fr;
-            gap: 6.5rem 1rem;
+            gap: 6.5rem 1.8rem;
         }
     }
 
     @media (min-width: 1440px) {
         .job-lists {
-            width: 110rem;
+            width: 75%;
             grid-template-columns: repeat(3, 1fr);
             gap: 6.5rem 3rem;
         }

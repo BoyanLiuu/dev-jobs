@@ -9,7 +9,14 @@ const SkeletonDiv = styled(StyledDesignCardContainer)`
         flex-direction: column;
         justify-content: space-between;
     }
+
+    :hover{
+        .card__content {
+            height: 15rem;
+        }
+    }
 `;
+
 const SkeletonJobCard = () => {
     return (
         <SkeletonDiv>
