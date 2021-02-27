@@ -22,20 +22,21 @@ export const StyledDesignCardContainer = styled.div`
         border: solid 0.1rem ${props => props.theme.cardShadowColor};
         box-shadow: 0.6rem 0.7rem 0 -0.1rem ${props => props.theme.cardLightShadowColor};
         border-radius: 1.5rem;
-        padding: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
+
         .card__img {
-            width: 4rem;
-            height: 4rem;
+            width: 3rem;
+            height: 3rem;
             object-fit: contain;
         }
     }
     .card__content {
         margin: 4.9rem 8% 2rem;
         width: 84%;
-        height: 15rem;
+        min-height: 15rem;
+        max-height: 15rem;
         .card__top,
         .card__company {
             display: block;
@@ -48,20 +49,23 @@ export const StyledDesignCardContainer = styled.div`
         }
         .card__dot {
             display: inline-block;
-            width: 0.4rem;
-            height: 0.4rem;
-            background-color: var(--dark-grey-color);
-            border-radius: 50%;
-            margin: 0 1.2rem 0.4rem 1.4rem;
+            width: 2.1rem;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
         }
         .card__link{
-            height: 6.5rem;
+            min-height: 6.5rem;
+            max-height: 6.5rem;
             width: 100%;
             display: block;
             padding: 0.5rem 1rem 0;
             margin: 0.8rem 0 0.3rem -1rem;
+            transition: max-height ease-in-out 0.2s;
+
             .card__title {
-                height: 5.5rem;
+                min-height: 5.5rem;
+                max-height: 5.5rem;
                 width: 100%;
                 font-weight: 700;
                 overflow: hidden;
@@ -69,10 +73,10 @@ export const StyledDesignCardContainer = styled.div`
                 font-size: 2rem;
                 line-height: 2.7rem;
                 color: ${(props) => props.theme.cardTitleColor};
-                transition: color ease-in-out 0.2s;
+                transition: color ease-in-out 0.2s, max-height ease-in-out 0.2s;
             }
         }
-        
+
 
         .card__link:hover {
             border-left: solid 0.2rem var(--violet-color);
@@ -85,33 +89,99 @@ export const StyledDesignCardContainer = styled.div`
             color: var(--violet-color);
             font-size: 1.4rem;
             line-height: 1.9rem;
-            margin-top: 2.1rem;
+            margin: 2.1rem 0 0;
+            max-height: 1.9rem;
+            overflow: hidden;
         }
 
 
     }
 
+    @keyframes sub-text-expand {
+        0% {
+            max-height: 1.9rem;
+            opacity:1;
+        }
+        50% {
+            max-height: 3rem;
+            opacity: 0;
+        }
+        100% {
+            max-height: 4rem;
+            opacity: 1;
+        }
+    }
+
+
+    @keyframes text-expand {
+        0% {
+            max-height: 5.5rem;
+            opacity: 1;
+        }
+        50% {
+            max-height: 6.6rem;
+            opacity: 0;
+        }
+        100% {
+            max-height: 8rem;
+            opacity: 1;
+        }
+    }
+
+    @keyframes container-expand {
+        0% {
+            max-height: 15rem;
+        }
+        40% {
+            max-height: 15rem;
+        }
+        50% {
+            max-height: fit-content;
+        }
+        100% {
+            max-height: fit-content;
+        }
+    }
+
+
     :hover {
-        
+        transform: translate(0rem, -0.5rem);
         box-shadow:  1rem 1.2rem 0rem -0.2rem ${props => props.theme.cardShadowColor};
+        transition: transform ease-in 0.2s;
 
         .card__content{
-            height: min-content;
+            max-height: fit-content;
+            animation: container-expand 0.7s ease-out;
             .card__link {
-                min-height: 5.5rem;
-                height: min-content;
+                animation: text-expand 0.8s ease-out;
+                max-height: max-content;
+                
                 .card__title {
-                    min-height: 6rem;
-                    height: min-content;
+                    animation: text-expand 0.8s ease-out;
+                    max-height: fit-content;
                 }
+            }
 
+            
+
+            .card__top{
+                animation: text-expand 0.7s ease;
+            }
+
+            .card__company {
+                animation: text-expand 0.9s ease-out;
+            }
+
+            .card__locations {
+                animation:  sub-text-expand 1s ease-out;
             }
 
             .card__top,
-            .card__company {
-                min-height: 2.1rem;
-                height: min-content;
+            .card__company,
+            .card__locations {
+                max-height: max-content;
             }
+
         }
     }
 
@@ -122,21 +192,20 @@ const JobCard = ({ data }) => {
     if (company_logo === null || company_logo === '')
         company_logo = location_logo;
 
-    // console.log(created_at);
-    // const daysElapsed =
-    //     (Date.now() - new Date(created_at)) / (1000 * 60 * 60 * 24);
-    // var elapsedString = '';
-    // if (daysElapsed > 7) {
-    //     elapsedString = `${Math.floor(daysElapsed / 7)}w ago`;
-    // } else if (Math.floor(daysElapsed * 24) === 0) {
-    //     elapsedString = `within an hour`;
-    // } else if (Math.floor(daysElapsed) === 0) {
-    //     elapsedString = `${Math.floor(daysElapsed * 24)}h ago`;
-    // } else {
-    //     elapsedString = `${Math.floor(daysElapsed)}d ago`;
-    // }
+    const daysElapsed =
+        (Date.now() - new Date(created_at)) / (1000 * 60 * 60 * 24);
 
-    const daysElapsed = '5 days ago';
+    var elapsedString = '';
+    if (daysElapsed > 7) {
+        elapsedString = `${Math.floor(daysElapsed / 7)}w ago`;
+    } else if (Math.floor(daysElapsed * 24) === 0) {
+        elapsedString = `within an hour`;
+    } else if (Math.floor(daysElapsed) === 0) {
+        elapsedString = `${Math.floor(daysElapsed * 24)}h ago`;
+    } else {
+        elapsedString = `${Math.floor(daysElapsed)}d ago`;
+    }
+
     return (
         <StyledDesignCardContainer>
             <div className="card__img--container">
@@ -148,8 +217,8 @@ const JobCard = ({ data }) => {
             </div>
             <div className="card__content">
                 <div className="card__top">
-                    <span className="card__hour">{daysElapsed}</span>
-                    <div className="card__dot" />
+                    <span className="card__hour">{elapsedString}</span>
+                    <p className="card__dot">·</p>
                     <span className="card__full">{type}</span>
                 </div>
 
