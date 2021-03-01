@@ -21,6 +21,8 @@ export const StyledDesignCardContainer = styled.div`
         background: white;
         border: solid 0.1rem ${props => props.theme.cardShadowColor};
         box-shadow: 0.6rem 0.7rem 0 -0.1rem ${props => props.theme.cardLightShadowColor};
+
+        transition: border ease 0.2s, box-shadow ease 0.2s;
         border-radius: 1.5rem;
         display: flex;
         justify-content: center;
@@ -32,6 +34,12 @@ export const StyledDesignCardContainer = styled.div`
             object-fit: contain;
         }
     }
+
+    .card__img--container:hover {
+        border: solid 0.1rem var(--light-violet-color);
+        box-shadow: 0.6rem 0.7rem 0 -0.1rem var(--half-light-violet-color);
+    }
+    
     .card__content {
         margin: 4.9rem 8% 2rem;
         width: 84%;
@@ -208,13 +216,23 @@ const JobCard = ({ data }) => {
 
     return (
         <StyledDesignCardContainer>
-            <div className="card__img--container">
-                <img
-                    src={company_logo}
-                    alt="company logo"
-                    className="card__img "
-                />
-            </div>
+            <Link className="card__link" to={{
+                    pathname: `job/${id}`,
+                    state: {
+                        data: data
+                    }
+                }}
+                aria-label={`Link toward the job description of ${title}`}>
+                
+                    <div className="card__img--container">
+                        <img
+                            src={company_logo}
+                            alt="company logo"
+                            className="card__img "
+                        />
+                    </div>
+            </Link>
+                
             <div className="card__content">
                 <div className="card__top">
                     <span className="card__hour">{elapsedString}</span>
@@ -222,7 +240,12 @@ const JobCard = ({ data }) => {
                     <span className="card__full">{type}</span>
                 </div>
 
-                <Link className="card__link" to={`job/${id}`}>
+                <Link className="card__link" to={{
+                    pathname: `job/${id}`,
+                    state: {
+                        data: data
+                    }
+                }}>
                     <p className="card__title">{title}</p>
                 </Link>
                 <p className="card__company">{company}</p>
