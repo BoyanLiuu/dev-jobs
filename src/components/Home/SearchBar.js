@@ -296,7 +296,7 @@ const SearchBar = ({ setFilter }) => {
                 />
             </div>
             <div className="fullTime-container fullTime-container--tablet">
-                <input type="checkbox" id="fullTime" name="fullTime"
+                <input type="checkbox" id="fullTime" name="fullTime" aria-label="fulltime"
                     onClick={(e) => {
                         setFilterField({
                             ...filterField,
@@ -350,7 +350,6 @@ const SearchBar = ({ setFilter }) => {
                     <div className="fullTime-container">
                         <input
                             type="checkbox"
-                            id="fullTime"
                             name="fullTime"
                             onClick={(e) => {
                                 setFilterField({
