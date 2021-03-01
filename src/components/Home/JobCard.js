@@ -2,7 +2,8 @@
 import styled from 'styled-components';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import location_logo from './../../assets/images/location.svg';
+import default_logo from '../../assets/images/desktop/icon-default.svg';
+
 export const StyledDesignCardContainer = styled.div`
     width: 100%;
     min-height: 23.1rem;
@@ -198,7 +199,7 @@ export const StyledDesignCardContainer = styled.div`
 const JobCard = React.forwardRef(function JobCard ({data,last},ref ){
     let { company, company_logo, type, location, created_at, title, id } = data;
     if (company_logo === null || company_logo === '')
-        company_logo = location_logo;
+        company_logo = default_logo;
 
     const daysElapsed =
         (Date.now() - new Date(created_at)) / (1000 * 60 * 60 * 24);

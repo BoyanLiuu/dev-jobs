@@ -155,8 +155,9 @@ const Footer = ({page, data}) => {
                         <p className="job-footer-job-title"> {data.title}</p>
                         <p className="job-footer-company-name"> {data.company} </p>
                     </div>
-                    <Link to={{
-                        pathname: `/job/${data.id}#apply-now`,
+                    <Link smooth to={{
+                        pathname: `/job/${data.id}`,
+                        hash: '#apply-now',
                         state : {
                             data: data
                         }}

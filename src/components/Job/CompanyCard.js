@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from 'styled-components';
 import React from 'react';
-
+import default_logo from '../../assets/images/desktop/icon-default.svg';
 
 export const StyledJobTitleDiv = styled.div`
     width: 100%;
@@ -129,7 +129,7 @@ const JobTitle = ({ Data }) => {
     return (
         <StyledJobTitleDiv>
             <div className="company-logo-wrapper">
-                <img className="logo" src={Data.company_logo} alt="company logo" />
+                <img className="logo" src={(Data.company_logo)? Data.company_logo : default_logo} alt="company logo" />
             </div>
 
             <div className="company-info-wrapper">

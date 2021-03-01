@@ -14,6 +14,7 @@ export const MainDescWrapper = styled.div`
         .mobile-footer-img {
             width: 100%;
         }
+
         .desktop-footer-img {
             display: none;
         }
@@ -49,6 +50,10 @@ export const MainDescWrapper = styled.div`
                     color: white;
                     word-wrap: break-word;
                     font-weight: 700;
+                }
+
+                a:hover {
+                   text-decoration: underline;
                 }
 
                 h1,
@@ -308,12 +313,13 @@ const JobDesc = ({ Data }) => {
                         <p className="job-location"> {Data.location} </p>
                     </div>
 
-                    <Link to={{
-                        pathname: `/job/${Data.id}#apply-now`,
-                        state : {
+                    <Link smooth to={{
+                        pathname:`/job/${Data.id}`,
+                        hash: '#apply-now',
+                        state: {
                             data: Data
-                        }
-                    }}>
+                        }}
+                        }>
                         <button className="apply-btn"> Apply Now</button>
                     </Link>
                 </JobTopSec>
