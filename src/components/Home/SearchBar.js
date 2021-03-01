@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import { ReactComponent as SearchIcon } from './../../assets/images/desktop/icon-search.svg';
 import filterIcon from './../../assets/images/mobile/icon-filter.svg';
-import locationIcon from './../../assets/images/desktop/icon-check.svg';
+import locationIcon from './../../assets/images/desktop/icon-location.svg';
 import checkerIcon from './../../assets/images/desktop/icon-check.svg';
 
 const StyledDesignBannerContainer = styled.div`
