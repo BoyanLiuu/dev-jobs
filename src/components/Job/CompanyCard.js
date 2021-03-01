@@ -125,7 +125,6 @@ export const StyledJobTitleDiv = styled.div`
 `;
 
 const JobTitle = ({ Data }) => {
-    console.log(Data)
     return (
         <StyledJobTitleDiv>
             <div className="company-logo-wrapper">

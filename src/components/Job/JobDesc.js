@@ -296,8 +296,6 @@ const JobDesc = ({ Data }) => {
         elapsedString = `${Math.floor(daysElapsed)}d ago`;
     }
 
-    console.log("in job desc:")
-    console.log(Data);
 
     return (
         <MainDescWrapper>

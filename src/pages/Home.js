@@ -66,9 +66,12 @@ function Home() {
             .then((res) => res.json())
             .then((data) => JSON.parse(data.contents));
         const wait = (timeToDelay) => new Promise((resolve) => setTimeout(resolve, timeToDelay));
-        await wait(2000);
-
-        setJobs(prev => [...prev, ...result]);
+        await wait(500);
+        if(page === 1){
+            setJobs(result);
+        }else{
+            setJobs(prev => [...prev, ...result]);
+        }
         setReady(true);
         setHasMore(result.length > 0);
     }
@@ -84,13 +87,12 @@ function Home() {
         if (!ready) return
         if (observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(entries => {
-            console.log(entries);
             if (entries[0].isIntersecting && hasMore) {
             setPage(prevPageNumber => prevPageNumber + 1)
             }
         })
         if (node) observer.current.observe(node);
-    }, [ready, hasMore, page])
+    }, [ready, hasMore])
 
     if(ready){
         renderJobItems = jobs.map((item, index) => {
