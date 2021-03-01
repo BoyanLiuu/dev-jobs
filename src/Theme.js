@@ -11,6 +11,8 @@ export const lightTheme = {
     companyButtonColor: 'rgba(89, 100, 224, 0.1)',
     companyButtonHoverColor: 'rgba(89, 100, 224, 0.4)',
     companyButtonTextColor: 'hsl(235, 69%, 61%)',
+    logoPosition:'0.5rem',
+
 };
 export const darkTheme = {
     bgColor: 'hsl(220, 29%, 10%)',
@@ -23,6 +25,7 @@ export const darkTheme = {
     companyButtonColor: 'hsla(214, 17%, 51%, 0.2)',
     companyButtonHoverColor: 'hsl(214, 17%, 51%, 0.6)',
     companyButtonTextColor: 'hsl(0, 0%, 100%)',
+    logoPosition:'3rem',
 };
 export const GlobalStyle = createGlobalStyle`
     :root {

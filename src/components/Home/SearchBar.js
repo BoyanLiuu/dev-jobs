@@ -244,7 +244,6 @@ const SearchBar = ({ setFilter }) => {
     });
 
     const handleSearch = () => {
-        console.log(filterField);
         setFilter(filterField);
         //reset
         setFilterField({
@@ -253,6 +252,11 @@ const SearchBar = ({ setFilter }) => {
             fullTime: false,
         });
     };
+    // allow enter to start search
+    const handleKeyDown = (e) =>{
+        if(e.keyCode === 13)
+            handleSearch();
+    }
     const modelClasses = show ? 'modal show-modal' : 'modal';
     return (
         <StyledDesignBannerContainer>
@@ -262,6 +266,7 @@ const SearchBar = ({ setFilter }) => {
                     placeholder="Filter by title, company, expertise..."
                     aria-label="Enter company, title, or expertise here"
                     value={filterField.description}
+                    onKeyDown={handleKeyDown}
                     onChange={(e) => {
                         setFilterField({
                             ...filterField,
@@ -281,6 +286,7 @@ const SearchBar = ({ setFilter }) => {
                     aria-label="Enter location"
                     value={filterField.location}
                     id="address-input"
+                    onKeyDown={handleKeyDown}
                     onChange={(e) => {
                         setFilterField({
                             ...filterField,
@@ -331,6 +337,7 @@ const SearchBar = ({ setFilter }) => {
                             placeholder="Filter by location..."
                             aria-label="Enter location"
                             value={filterField.location}
+                            onKeyDown={handleKeyDown}
                             onChange={(e) => {
                                 setFilterField({
                                     ...filterField,

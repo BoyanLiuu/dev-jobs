@@ -118,7 +118,7 @@ export const StyledDesignCardContainer = styled.div`
             max-height: 5.5rem;
             opacity: 1;
         }
-        50% {
+        40% {
             max-height: 6.6rem;
             opacity: 0;
         }
@@ -187,7 +187,7 @@ export const StyledDesignCardContainer = styled.div`
 
 `;
 
-const JobCard = ({ data }) => {
+const JobCard = React.forwardRef(function JobCard ({data,last},ref ){
     let { company, company_logo, type, location, created_at, title, id } = data;
     if (company_logo === null || company_logo === '')
         company_logo = location_logo;
@@ -207,7 +207,7 @@ const JobCard = ({ data }) => {
     }
 
     return (
-        <StyledDesignCardContainer>
+        <StyledDesignCardContainer ref={ref} className={last}>
             <div className="card__img--container">
                 <img
                     src={company_logo}
@@ -231,6 +231,9 @@ const JobCard = ({ data }) => {
             </div>
         </StyledDesignCardContainer>
     );
-};
+});
+
+
+
 
 export default JobCard;

@@ -62,7 +62,7 @@ const HeaderDiv = styled.header`
                     position: absolute;
                     background: var(--violet-color);
                     top: 50%;
-                    left: 0.5rem;
+                    left: ${(props) => props.theme.logoPosition};
                     transform: translateY(-50%);
                 }
                 &:hover::before {
@@ -70,7 +70,7 @@ const HeaderDiv = styled.header`
                 }
 
                 &:checked::before {
-                    left: 3rem;
+                    left: ${(props) => props.theme.logoPosition}
                 }
             }
         }

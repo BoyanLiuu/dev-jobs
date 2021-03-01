@@ -5,6 +5,8 @@ import { ThemeProvider } from 'styled-components';
 import { Header } from './components/index';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { QueryClient, QueryClientProvider} from 'react-query';
+import {ReactQueryDevtools} from 'react-query/devtools';
 function App() {
     //check localstorage and see if we store dark/light
     const themeFlag = () => {
@@ -17,12 +19,17 @@ function App() {
     const themeToggler = () => {
         setTheme(!theme);
     };
+    // Create a client for React-query
+    const queryClient = new QueryClient();
+
+
     // update localstorage
     useEffect(() => {
         localStorage.setItem('mode', theme);
     }, [theme]);
 
     return (
+        <QueryClientProvider client = {queryClient}>
         <Router>
             <ThemeProvider theme={theme ? lightTheme : darkTheme}>
                 <GlobalStyle />
@@ -35,6 +42,8 @@ function App() {
                 </main>
             </ThemeProvider>
         </Router>
+        <ReactQueryDevtools/>
+        </QueryClientProvider>
     );
 }
 

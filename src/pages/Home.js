@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Footer } from '../components/index';
 // import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 import { JobCard, SearchBar, SkeletonJobCard } from './../components/index';
 import styled from 'styled-components';
@@ -36,13 +36,12 @@ const HomeDiv = styled.div`
     }
 `;
 function Home() {
-    // skeleton loading
+    let renderJobItems;
+    // hook set up
     const [ready, setReady] = useState(false);
-    //store fetched data
     const [jobs, setJobs] = useState([]);
-    //set page  pagination
     const [page, setPage] = useState(1);
-    //store filter field
+    const [hasMore, setHasMore] = useState(false)
     const [filter, setFilter] = useState({
         description: '',
         location: '',
@@ -55,62 +54,54 @@ function Home() {
             return <SkeletonJobCard key={index} />;
         });
 
-    const renderJobItems = jobs.map((item, index) => {
-        return <JobCard data={item} key={index} />;
-    });
+
     // fetch jobs data
     async function fetchMovies() {
         const endpoint = `https://api.allorigins.win/get?url=${encodeURIComponent(
             `https://jobs.github.com/positions.json?page=${page}&description=${filter.description}&location=${filter.location}&full_time=${filter.fullTime}`
         )}`;
+        setReady(false);
         //using await to wait for finishing fetching and store it into an array
         const result = await fetch(endpoint)
             .then((res) => res.json())
             .then((data) => JSON.parse(data.contents));
-        setJobs(result);
-        // console.log('in the fetch');
+        const wait = (timeToDelay) => new Promise((resolve) => setTimeout(resolve, timeToDelay));
+        await wait(2000);
+
+        setJobs(prev => [...prev, ...result]);
+        setReady(true);
+        setHasMore(result.length > 0);
     }
-    //Use effect
-    useEffect(() => {
-        async function waitFunc() {
-            const wait = (timeToDelay) =>
-                new Promise((resolve) => setTimeout(resolve, timeToDelay));
-            await wait(2000);
-            setReady(true);
-            console.log('waiting ');
-        }
-        waitFunc();
-        console.log('outside waiting ');
-    }, []);
+
 
     useEffect(() => {
-        // check search filter field
-        let flag = true;
-        if (
-            filter.description !== '' ||
-            filter.location !== '' ||
-            filter.fullTime !== false
-        )
-            flag = false;
-        console.log(`flag is: ${flag}`);
-        //get data from sessionStorage,so when we close the page it will fetch data again
-        if (flag && sessionStorage.jobs) {
-            setJobs(JSON.parse(sessionStorage.jobs));
-            console.log('fetch from session storage');
-        } else {
-            fetchMovies();
-            console.log('fetch from api');
-            // console.log(jobs);
-        }
-        // setReady(true);
+        fetchMovies();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filter, page]);
 
-    useEffect(() => {
-        console.log('when did i happen?');
+ const observer = useRef(null);
+    const lastJobElementRef = useCallback(node => {
+        if (!ready) return
+        if (observer.current) observer.current.disconnect()
+        observer.current = new IntersectionObserver(entries => {
+            console.log(entries);
+            if (entries[0].isIntersecting && hasMore) {
+            setPage(prevPageNumber => prevPageNumber + 1)
+            }
+        })
+        if (node) observer.current.observe(node);
+    }, [ready, hasMore, page])
 
-        sessionStorage.setItem('jobs', JSON.stringify(jobs));
-    }, [filter, page, jobs]);
+    if(ready){
+        renderJobItems = jobs.map((item, index) => {
+            if(jobs.length === index + 1)
+                return <JobCard  ref={lastJobElementRef} data={item} key={index} last ="true" />;
+            else
+                return <JobCard ref={null} data={item} key={index} last ="false" />;
+        });
+    }
+
+
 
     return (
         <HomeDiv>
