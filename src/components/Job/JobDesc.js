@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import parse from 'html-react-parser';
+import { HashLink as Link } from 'react-router-hash-link';
 import mobileFooterImg from '../../assets/images/mobile/bg-pattern-detail-footer.svg';
 import desktopFooterImg from '../../assets/images/desktop/bg-pattern-detail-footer.svg';
 
@@ -290,6 +291,9 @@ const JobDesc = ({ Data }) => {
         elapsedString = `${Math.floor(daysElapsed)}d ago`;
     }
 
+    console.log("in job desc:")
+    console.log(Data);
+
     return (
         <MainDescWrapper>
             <JobDescWrapper>
@@ -304,9 +308,14 @@ const JobDesc = ({ Data }) => {
                         <p className="job-location"> {Data.location} </p>
                     </div>
 
-                    <a href="#apply-now">
+                    <Link to={{
+                        pathname: `/job/${Data.id}#apply-now`,
+                        state : {
+                            data: Data
+                        }
+                    }}>
                         <button className="apply-btn"> Apply Now</button>
-                    </a>
+                    </Link>
                 </JobTopSec>
 
                 <div className="job-mid-sec">{parse(Data.description)}</div>

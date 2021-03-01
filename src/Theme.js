@@ -56,6 +56,15 @@ export const GlobalStyle = createGlobalStyle`
         font-family: 'Kumbh Sans', sans-serif;
         overflow-x: hidden;
         transition: background-color ease-in-out 0.3s;
+
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+                                    
     }
     a {
         text-decoration: none;

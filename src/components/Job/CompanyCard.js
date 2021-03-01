@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
 import React from 'react';
 
 
@@ -17,12 +16,20 @@ export const StyledJobTitleDiv = styled.div`
         height: 5rem;
         width: 5rem;
         margin: -2.5rem 0 0 0;
-        background-color: pink;
+        background-color: white;
+        border: solid 0.1rem ${props => props.theme.cardShadowColor};
+        box-shadow: 0.6rem 0.7rem 0 -0.1rem ${props => props.theme.cardLightShadowColor};
         border-radius: 1.5rem;
         padding: 1rem;
 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
         .logo {
-            height: 100%;
+            height: auto;
+            max-height: 100%;
+            width: 100%;
         }
     }
 
@@ -85,11 +92,14 @@ export const StyledJobTitleDiv = styled.div`
         overflow: hidden;
 
         .company-logo-wrapper {
-            height: 100%;
-            width: auto;
+            height: 14rem;
+            width: 14rem;
             margin: 0;
             border-radius: 0;
-            padding: 3rem;
+            padding: 2.5rem;
+            box-shadow: 0 0 0 0 ${props => props.theme.cardLightShadowColor};
+            border: none;
+            border-right: solid 0.1rem ${props => props.theme.cardShadowColor};
         }
 
         .company-info-wrapper {
@@ -97,6 +107,7 @@ export const StyledJobTitleDiv = styled.div`
             align-items: center;
             justify-content: space-between;
             margin: 0 3.5rem;
+            width: calc(100% - 18rem);
 
             .company-text-wrapper {
                 align-items: flex-start;
@@ -114,7 +125,7 @@ export const StyledJobTitleDiv = styled.div`
 `;
 
 const JobTitle = ({ Data }) => {
-
+    console.log(Data)
     return (
         <StyledJobTitleDiv>
             <div className="company-logo-wrapper">
@@ -124,12 +135,16 @@ const JobTitle = ({ Data }) => {
             <div className="company-info-wrapper">
                 <div className="company-text-wrapper">
                     <p className="company-name"> {Data.company} </p>
-                    <p className="company-url"> {Data.company_url.replace('http://www.', '').replace('https://www.','')} </p>
+                    <p className="company-url"> {(Data.company_url) ? Data.company_url.replace('http://www.', '').replace('https://www.',''): ''} </p>
                 </div>
+                {
+                    (Data.company_url) ? 
+                    <a className="company-link" href={Data.company_url} target="_blank" rel="noreferrer" aria-label="link to company website">
+                        <button className="company-btn"> Company Site </button>
+                    </a>:
+                    <button className="company-btn"> No Link Available </button>
+                }
                 
-                <a className="company-link" href={Data.company_url} target="_blank" rel="noreferrer" aria-label="link to company website">
-                    <button className="company-btn"> Company Site </button>
-                </a>
             </div>
            
         </StyledJobTitleDiv>

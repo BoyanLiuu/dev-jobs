@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
 
-// import { Link } from 'react-router-dom';
 export const JobFooterContainer = styled.footer`
    
     .footer {
@@ -155,9 +155,14 @@ const Footer = ({page, data}) => {
                         <p className="job-footer-job-title"> {data.title}</p>
                         <p className="job-footer-company-name"> {data.company} </p>
                     </div>
-                    <a href="#apply-now" aria-label="jump to apply now section">
+                    <Link to={{
+                        pathname: `/job/${data.id}#apply-now`,
+                        state : {
+                            data: data
+                        }}
+                    } aria-label="jump to apply now section">
                         <button className="job-footer-apply-now-button"> Apply Now </button>
-                    </a>
+                    </Link>
                 </div>
                 <hr/>
                 <div className="attribution">
